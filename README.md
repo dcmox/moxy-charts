@@ -1,2 +1,3 @@
-# moxy-charts
-Moxy Charts and Graphs
+# moxy-ui
+
+Moxy UI - Charts, graphs, and UI elements for the front end.

@@ -1,0 +1,166 @@
+:root {
+	--green: #ac0;
+	--blue: #357da2;
+	--red: #d44;
+	--yellow: #fc3;
+	--teal: #35c2cb;
+	--purple: #a235cb;
+	--pink: #f7b;
+	--lime: #7fdc3a;
+	--banana: #c7dc3a;
+	--skyblue: #2fc9e0;
+	--tangerine: #e0552f;
+	--grey: #888;
+	--light-grey: #e6e6e6;
+}
+
+.progress_circle {
+	transform: rotate(-90deg);
+}
+
+.progress_circle__value {
+	stroke-dasharray: var(--circle-radius);
+	stroke-dashoffset: var(--circle-radius);
+	animation: progress_circle__animation 2s var(--circle-animation);
+}
+
+.progress_circle__complete {
+	animation: progress_circle__complete 2s var(--circle-animation);
+}
+
+@keyframes progress_circle__complete {
+	from {
+		opacity: 0;
+	}
+	to {
+		opacity: 1;
+	}
+}
+@keyframes progress_circle__animation {
+	from {
+		stroke-dashoffset: var(--circle-radius);
+	}
+	to {
+		stroke-dashoffset: 0;
+	}
+}
+
+.chart-row {
+	margin-bottom: 5px;
+	display: flex;
+	align-items: center;
+}
+.chart-inner {
+	position: relative;
+}
+.chart-inner h3 {
+	margin-bottom: 10px;
+}
+.chart-inner span {
+	display: inline-block;
+	font-size: 10px;
+	padding-left: 5px;
+	margin-bottom: 2px;
+}
+.chart-bar {
+	border: 2px solid rgba(255, 255, 255, 1);
+	display: inline-block;
+	height: 16px;
+	color: #fff;
+}
+.chart-bar:hover {
+	box-shadow: 2px 2px 4px #888888;
+}
+.chart-column {
+	display: inline-block;
+}
+
+.chart-inner .pie-inner {
+	position: relative;
+	width: calc(100% - 60px);
+	height: calc(100% - 60px);
+}
+
+.chart-inner .legend .key {
+	display: inline-block;
+	width: 10px;
+	height: 10px;
+	margin: 0;
+	padding: 0;
+}
+
+.chart-inner .legend label {
+	display: block;
+}
+
+.chart-inner.bar-chart .legend span {
+	width: 48px;
+	text-align: center;
+}
+.chart-inner.bar-chart .chart-column {
+	margin: 0 15px;
+}
+.chart-inner.bar-chart .chart-column .chart-bar {
+	width: 20px;
+}
+
+.chart-inner.pie-chart-svg {
+	position: relative;
+}
+.chart-inner.pie-chart-svg svg circle {
+	fill: transparent;
+	stroke-width: calc(var(--circle-width) / 2);
+	transition: stroke-dasharray 3s ease;
+}
+
+.chart-inner.pie-chart-svg svg {
+	position: absolute;
+	margin: 0 auto;
+	transform: rotate(-90deg);
+	background: transparent;
+	border-radius: 50%;
+	display: block;
+}
+
+.chart-inner.pie-chart .legend,
+.chart-inner.pie-chart-svg .legend {
+	position: absolute;
+	top: 32px;
+	right: 0;
+	width: 100px;
+}
+
+.pie {
+	/* Basic layout */
+	display: inline-block;
+	width: inherit;
+	height: inherit;
+	border-radius: 50%;
+	/* A little styling */
+	border: 0.15em solid #fff;
+	box-shadow: 0 0.075em 0.2em 0.05em rgba(0, 0, 0, 0.25);
+
+	/* fixes a minor clipping issue in Chrome */
+	background-origin: border-box;
+}
+.moxy-table {
+	color: #444;
+	width: 100%;
+	border-spacing: 0;
+}
+.moxy-table thead {
+	background-color: #eee;
+}
+.moxy-table th,
+.moxy-table td {
+	padding: 4px;
+}
+.moxy-table tr:nth-child(odd) {
+	background-color: #fafafa;
+}
+.moxy-table tr td {
+	border-bottom: 1px solid #ddd;
+}
+.moxy-table thead th {
+	font-weight: normal;
+}
