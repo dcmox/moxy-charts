@@ -164,3 +164,15 @@
 .moxy-table thead th {
 	font-weight: normal;
 }
+.chart-treemap {
+	font-weight: bold;
+	color: #fff;
+	text-align: center;
+}
+
+.chart-treemap div {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	text-shadow: 2px 1px 3px #000;
+}

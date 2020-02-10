@@ -28,7 +28,7 @@ var MoxyUI = /** @class */ (function () {
             this._opts = Object.assign(this._opts, opts);
         }
     }
-    MoxyUI.insert = function (selector, elem, opts) {
+    MoxyUI.display = function (selector, elem, opts) {
         var element = document.querySelector(selector);
         if (!element) {
             return false;
@@ -36,7 +36,18 @@ var MoxyUI = /** @class */ (function () {
         if (elem === 'loadingCircle') {
             return MoxyUI.loadingCircle(element, opts);
         }
+        else if (elem === 'calendar') {
+            return MoxyUI.calendar(element, opts);
+        }
         return false;
+    };
+    MoxyUI.calendar = function (element, opts) {
+        if (!opts.height) {
+            opts.height = opts.width;
+        }
+        var div = document.createElement('div');
+        div.className = 'inner-calendar';
+        return true;
     };
     MoxyUI.loadingCircle = function (element, opts) {
         if (!opts.height) {
@@ -88,8 +99,11 @@ var MoxyUI = /** @class */ (function () {
         else if (style === 'table') {
             this.table(element, opts);
         }
+        else if (style === 'treemap') {
+            this.treeMap(element, opts);
+        }
     };
-    MoxyUI.prototype.table = function (element) {
+    MoxyUI.prototype.table = function (element, opts) {
         var html = '';
         if (this._title) {
             html += "<h3>" + this._title + "</h3>";
@@ -108,6 +122,52 @@ var MoxyUI = /** @class */ (function () {
         if (element) {
             element.innerHTML = html;
         }
+    };
+    MoxyUI.prototype.scatterChart = function () {
+        //
+    };
+    MoxyUI.prototype.calendar = function () {
+        // calendar widget
+    };
+    MoxyUI.prototype.datePicker = function () {
+        // datePicker
+    };
+    MoxyUI.prototype.treeMap = function (element, opts) {
+        var _this = this;
+        this._normalizeData(-1);
+        var inner = document.createElement('div');
+        inner.className = 'chart-inner';
+        inner.classList.add('chart-treemap');
+        var html = '';
+        var main = 'width';
+        var alt = 'height';
+        this._normalized.sort(function (a, b) { return (a.value > b.value ? -1 : 1); });
+        var wr = 100;
+        var hr = 100;
+        var rv = -1;
+        this._normalized.forEach(function (ds, index) {
+            var carry = index % 1 === 0 ? wr : hr;
+            if (rv === -1) {
+                rv = ds.value;
+            }
+            else {
+                rv = Math.ceil(ds.value * (100 / carry));
+            }
+            var remainder = main === 'height' ? wr : hr;
+            if (index === _this._normalized.length - 1) {
+                rv = wr;
+            }
+            html += "<div style=\"float: left;" + main + ": " + rv + "%; " + alt + ": " + remainder + "%; background-color: var(--" + _this._colors[_this._normalized.length - 1 - index] + ")\"><span>" + ds.label + " (" + _this._normalized[index].value + ")</span></div>";
+            wr = main === 'width' ? wr - rv : wr;
+            hr = main === 'height' ? hr - rv : hr;
+            if (index % 1 === 0) {
+                main = main === 'width' ? 'height' : 'width';
+                alt = alt === 'height' ? 'width' : 'height';
+            }
+        });
+        html += '</div>';
+        inner.innerHTML = html;
+        element.append(inner);
     };
     MoxyUI.prototype.barChart = function (element, style, opts) {
         var _this = this;
@@ -303,7 +363,14 @@ chart.render('#chart', 'pie');
 chart.render('#chartTwo', 'bar');
 chart.render('#chartThree', 'bar-vert');
 chart.render('#chartFour', 'table');
-MoxyUI.insert('#demo', 'loadingCircle', {
+chart.render('#chartFive', 'treemap');
+MoxyUI.display('#calendar', 'calendar', {
+    height: 150,
+    width: 150,
+    text: 'Loading...',
+    textColor: 'blue'
+});
+MoxyUI.display('#demo', 'loadingCircle', {
     height: 150,
     width: 150,
     text: 'Loading...',

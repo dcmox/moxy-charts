@@ -24,9 +24,9 @@ type TMoxyColor =
 	| 'tangerine'
 
 class MoxyUI {
-	public static insert(
+	public static display(
 		selector: string,
-		elem: 'loadingCircle',
+		elem: 'loadingCircle' | 'calendar',
 		opts: IMoxyUIOptions,
 	): boolean {
 		const element: HTMLElement | null = document.querySelector(selector)
@@ -35,8 +35,21 @@ class MoxyUI {
 		}
 		if (elem === 'loadingCircle') {
 			return MoxyUI.loadingCircle(element, opts)
+		} else if (elem === 'calendar') {
+			return MoxyUI.calendar(element, opts)
 		}
 		return false
+	}
+	public static calendar(
+		element: HTMLElement,
+		opts: IMoxyUIOptions,
+	): boolean {
+		if (!opts.height) {
+			opts.height = opts.width
+		}
+		const div = document.createElement('div')
+		div.className = 'inner-calendar'
+		return true
 	}
 	public static loadingCircle(
 		element: HTMLElement,
@@ -126,7 +139,9 @@ class MoxyUI {
 			| 'pie'
 			| 'pie-css'
 			| 'table'
-			| 'donut' = 'bar',
+			| 'donut'
+			| 'calendar'
+			| 'treemap' = 'bar',
 		opts?: IMoxyUIOptions,
 	): void {
 		const element: HTMLElement | null = document.querySelector(selector)
@@ -144,9 +159,12 @@ class MoxyUI {
 			this.pieChart(element, opts)
 		} else if (style === 'table') {
 			this.table(element, opts)
+		} else if (style === 'treemap') {
+			this.treeMap(element, opts)
 		}
 	}
-	public table(element: HTMLElement): void {
+
+	public table(element: HTMLElement, opts?: IMoxyUIOptions): void {
 		let html = ''
 		if (this._title) {
 			html += `<h3>${this._title}</h3>`
@@ -167,6 +185,56 @@ class MoxyUI {
 		if (element) {
 			element.innerHTML = html
 		}
+	}
+	public scatterChart(): void {
+		//
+	}
+	public calendar(): void {
+		// calendar widget
+	}
+	public datePicker(): void {
+		// datePicker
+	}
+	public treeMap(element: HTMLElement, opts?: IMoxyUIOptions): void {
+		this._normalizeData(-1)
+		const inner = document.createElement('div')
+		inner.className = 'chart-inner'
+		inner.classList.add('chart-treemap')
+		let html: string = ''
+		let main: string = 'width'
+		let alt: string = 'height'
+		this._normalized.sort((a: any, b: any) => (a.value > b.value ? -1 : 1))
+		let wr: number = 100
+		let hr: number = 100
+		let rv: number = -1
+		this._normalized.forEach((ds: any, index: number) => {
+			const carry = index % 1 === 0 ? wr : hr
+			if (rv === -1) {
+				rv = ds.value
+			} else {
+				rv = Math.ceil(ds.value * (100 / carry))
+			}
+			const remainder = main === 'height' ? wr : hr
+			if (index === this._normalized.length - 1) {
+				rv = wr
+			}
+			html += `<div style="float: left;${main}: ${rv}%; ${alt}: ${remainder}%; background-color: var(--${
+				this._colors[this._normalized.length - 1 - index]
+			})"><span>${ds.label} (${
+				this._normalized[index].value
+			})</span></div>`
+
+			wr = main === 'width' ? wr - rv : wr
+			hr = main === 'height' ? hr - rv : hr
+
+			if (index % 1 === 0) {
+				main = main === 'width' ? 'height' : 'width'
+				alt = alt === 'height' ? 'width' : 'height'
+			}
+		})
+		html += '</div>'
+		inner.innerHTML = html
+		element.append(inner)
 	}
 	public barChart(
 		element: HTMLElement,
@@ -407,8 +475,16 @@ chart.render('#chart', 'pie')
 chart.render('#chartTwo', 'bar')
 chart.render('#chartThree', 'bar-vert')
 chart.render('#chartFour', 'table')
+chart.render('#chartFive', 'treemap')
 
-MoxyUI.insert('#demo', 'loadingCircle', {
+MoxyUI.display('#calendar', 'calendar', {
+	height: 150,
+	width: 150,
+	text: 'Loading...',
+	textColor: 'blue',
+})
+
+MoxyUI.display('#demo', 'loadingCircle', {
 	height: 150,
 	width: 150,
 	text: 'Loading...',
