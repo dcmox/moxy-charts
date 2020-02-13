@@ -176,3 +176,21 @@
 	justify-content: center;
 	text-shadow: 2px 1px 3px #000;
 }
+
+.moxy-loading-bar {
+	opacity: 1;
+	transition-property: opacity;
+	transition-duration: 1.5s;
+	background-color: #eee;
+	width: 100%;
+	height: 3px;
+}
+
+.moxy-loading-bar .track {
+	background-color: var(--track-color);
+	height: 3px;
+}
+
+.moxy-fade {
+	opacity: 0;
+}

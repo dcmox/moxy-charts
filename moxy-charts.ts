@@ -3,12 +3,14 @@ interface IKeyValuePair {
 }
 
 interface IMoxyUIOptions {
-	width: number
+	width?: number
 	height?: number
 	color?: string
 	animation?: string // forwards || infinite alternate
 	text?: string
 	textColor?: TMoxyColor
+	fn?: any
+	maxTime?: any
 }
 
 type TMoxyColor =
@@ -23,10 +25,16 @@ type TMoxyColor =
 	| 'skyblue'
 	| 'tangerine'
 
+const MoxyUIDefaultOptions = {
+	color: 'green',
+	height: 300,
+	width: 300,
+}
+
 class MoxyUI {
 	public static display(
 		selector: string,
-		elem: 'loadingCircle' | 'calendar',
+		elem: 'loadingCircle' | 'calendar' | 'loadingBar',
 		opts: IMoxyUIOptions,
 	): boolean {
 		const element: HTMLElement | null = document.querySelector(selector)
@@ -37,8 +45,59 @@ class MoxyUI {
 			return MoxyUI.loadingCircle(element, opts)
 		} else if (elem === 'calendar') {
 			return MoxyUI.calendar(element, opts)
+		} else if (elem === 'loadingBar') {
+			MoxyUI.loadingBar(element, opts)
+			return true
 		}
 		return false
+	}
+	public static async loadingBar(
+		element: HTMLElement,
+		opts?: IMoxyUIOptions,
+	): Promise<any> {
+		if (!opts) {
+			opts = MoxyUIDefaultOptions
+		}
+		const bar = document.createElement('div')
+		bar.className = 'moxy-loading-bar'
+		const track = document.createElement('div')
+		track.style.setProperty(
+			'background-color',
+			opts.color ? 'var(--' + opts.color + ')' : 'var(--green)',
+		)
+		track.className = 'track'
+		bar.append(track)
+		element.prepend(bar)
+		const FPS = 60
+		const ETA = (opts.maxTime / 1000) * FPS
+		let isDone: boolean = false
+		let progress: number = 0
+		function step(): any {
+			if (progress < 95) {
+				progress += 100 / ETA
+			} else {
+				const remainder = Math.floor((100 - progress) / 4)
+				progress += 100 / ETA / (10 - remainder)
+			}
+			if (progress > 99.5 && !isDone) {
+				window.requestAnimationFrame(step)
+				return
+			}
+			track.style.width = progress + '%'
+			if (progress < 100) {
+				window.requestAnimationFrame(step)
+			}
+		}
+
+		window.requestAnimationFrame(step)
+		await opts.fn()
+		isDone = true
+		progress = 100
+		bar.classList.add('moxy-fade')
+		setTimeout(() => {
+			bar.remove()
+		}, 2000)
+		return true
 	}
 	public static calendar(
 		element: HTMLElement,
@@ -116,11 +175,7 @@ class MoxyUI {
 		'skyblue',
 		'tangerine',
 	]
-	private _opts: IMoxyUIOptions = {
-		color: 'green',
-		height: 300,
-		width: 300,
-	}
+	private _opts: IMoxyUIOptions = MoxyUIDefaultOptions
 	private _title: string = ''
 	constructor(data: IKeyValuePair[], title?: string, opts?: IMoxyUIOptions) {
 		this._data = data
@@ -189,12 +244,17 @@ class MoxyUI {
 	public scatterChart(): void {
 		//
 	}
+	// Make configurable axis for labels
+	public lineChart(): void {
+		//
+	}
 	public calendar(): void {
 		// calendar widget
 	}
 	public datePicker(): void {
 		// datePicker
 	}
+	// Calculator tool
 	public treeMap(element: HTMLElement, opts?: IMoxyUIOptions): void {
 		this._normalizeData(-1)
 		const inner = document.createElement('div')
@@ -476,6 +536,27 @@ chart.render('#chartTwo', 'bar')
 chart.render('#chartThree', 'bar-vert')
 chart.render('#chartFour', 'table')
 chart.render('#chartFive', 'treemap')
+
+function timeout(ms: number): any {
+	return new Promise((resolve: any) => setTimeout(resolve, ms))
+}
+
+async function sleep(
+	ms: number,
+	fn: (...args: any) => any,
+	...args: any
+): Promise<any> {
+	await timeout(ms)
+	return fn(...args)
+}
+
+MoxyUI.display('#loadingBar', 'loadingBar', {
+	color: 'blue',
+	fn: async () => {
+		await sleep(15000, () => true)
+	},
+	maxTime: '10000', // ms
+})
 
 MoxyUI.display('#calendar', 'calendar', {
 	height: 150,
