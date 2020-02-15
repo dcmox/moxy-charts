@@ -26,7 +26,7 @@ exports.treeMap = function (data, element, opts) {
         if (index === normalized.length - 1) {
             rv = wr;
         }
-        html += "<div style=\"float: left;" + main + ": " + rv + "%; " + alt + ": " + remainder + "%; background-color: var(--" + IMoxyUI_1.MoxyUIColors[normalized.length - 1 - index] + ")\"><span>" + ds.label + " (" + normalized[index].value + ")</span></div>";
+        html += "<div style=\"float: left;" + main + ": " + rv + "%; " + alt + ": " + remainder + "%; background-color: var(--" + IMoxyUI_1.MoxyUIColors[normalized.length - 1 - index] + ")\"><span>" + ds.label + " (" + data[normalized.length - 1 - index].value + ")</span></div>";
         wr = main === 'width' ? wr - rv : wr;
         hr = main === 'height' ? hr - rv : hr;
         if (index % 1 === 0) {

@@ -39,24 +39,24 @@ exports.__esModule = true;
 var IMoxyUI_1 = require("./lib/IMoxyUI");
 var barChart_1 = require("./components/barChart");
 var calendar_1 = require("./components/calendar");
+var lineChart_1 = require("./components/lineChart");
 var loadingBar_1 = require("./components/loadingBar");
 var loadingCircle_1 = require("./components/loadingCircle");
 var pieChart_1 = require("./components/pieChart");
 var pieChartCSS_1 = require("./components/pieChartCSS");
+var radarChart_1 = require("./components/radarChart");
 var table_1 = require("./components/table");
 var treeMap_1 = require("./components/treeMap");
 var MoxyUI = /** @class */ (function () {
     function MoxyUI(data, title, opts) {
         this._data = [];
-        this._normalized = [];
         this._opts = IMoxyUI_1.MoxyUIDefaultOptions;
-        this._title = '';
         this._data = data;
-        if (title) {
-            this._title = title;
-        }
         if (opts) {
             this._opts = Object.assign(this._opts, opts);
+            if (!this._opts.title && title) {
+                this._opts.title = title;
+            }
         }
     }
     MoxyUI.display = function (selector, elem, opts) {
@@ -76,7 +76,7 @@ var MoxyUI = /** @class */ (function () {
         }
         return false;
     };
-    MoxyUI.prototype.render = function (selector, style, opts) {
+    MoxyUI.prototype.render = function (selector, style, opts, data) {
         if (style === void 0) { style = 'bar'; }
         var element = document.querySelector(selector);
         if (!element) {
@@ -85,27 +85,30 @@ var MoxyUI = /** @class */ (function () {
         if (!opts) {
             opts = this._opts;
         }
+        var d = data ? data : this._data;
         if (style === 'bar' || style === 'bar-vert') {
-            barChart_1.barChart(this._data, element, style, opts);
+            barChart_1.barChart(d, element, style, opts);
         }
         else if (style === 'pie-css') {
-            pieChartCSS_1.pieCSSChart(this._data, element, opts);
+            pieChartCSS_1.pieCSSChart(d, element, opts);
         }
         else if (style === 'pie') {
-            pieChart_1.pieChart(this._data, element, opts);
+            pieChart_1.pieChart(d, element, opts);
         }
         else if (style === 'table') {
-            table_1.table(this._data, element, opts);
+            table_1.table(d, element, opts);
         }
         else if (style === 'treemap') {
-            treeMap_1.treeMap(this._data, element, opts);
+            treeMap_1.treeMap(d, element, opts);
+        }
+        else if (style === 'lineChart') {
+            lineChart_1.lineChart(d, element, opts);
+        }
+        else if (style === 'radarChart') {
+            radarChart_1.radarChart(d, element, opts);
         }
     };
     MoxyUI.prototype.scatterChart = function () {
-        //
-    };
-    // Make configurable axis for labels
-    MoxyUI.prototype.lineChart = function () {
         //
     };
     MoxyUI.prototype.calendar = function () {
@@ -162,6 +165,40 @@ chart.render('#chartTwo', 'bar');
 chart.render('#chartThree', 'bar-vert');
 chart.render('#chartFour', 'table');
 chart.render('#chartFive', 'treemap');
+chart.render('#radarChart', 'radarChart', {
+    fillColor: 'blue',
+    borderColor: 'darkblue',
+    textColor: 'white',
+    title: 'Weekly Downloads',
+    captions: {
+        strength: 'Strength',
+        agility: 'Agility',
+        stamina: 'Stamina',
+        intelligence: 'Intelligence',
+        wisdom: 'Wisdom'
+    }
+}, [
+    {
+        strength: 0.7,
+        agility: 1,
+        stamina: 0.9,
+        intelligence: 0.67,
+        wisdom: 0.8
+    },
+    {
+        strength: 0.6,
+        agility: 0.9,
+        stamina: 0.8,
+        intelligence: 0.7,
+        wisdom: 0.6
+    },
+]);
+chart.render('#graph', 'lineChart', {
+    backgroundColor: 'blue',
+    fillColor: 'darkblue',
+    textColor: 'white',
+    title: 'Weekly Downloads'
+});
 function timeout(ms) {
     return new Promise(function (resolve) { return setTimeout(resolve, ms); });
 }

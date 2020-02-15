@@ -12,23 +12,26 @@
 	--tangerine: #e0552f;
 	--grey: #888;
 	--light-grey: #e6e6e6;
+	--dark: #111;
+	--darkblue: #122c4c;
+	--white: #fff;
 }
 
-.progress_circle {
+.moxy-progress-circle {
 	transform: rotate(-90deg);
 }
 
-.progress_circle__value {
+.moxy-progress-circle_value {
 	stroke-dasharray: var(--circle-radius);
 	stroke-dashoffset: var(--circle-radius);
-	animation: progress_circle__animation 2s var(--circle-animation);
+	animation: moxy-progress-circle_animation 2s var(--circle-animation);
 }
 
-.progress_circle__complete {
-	animation: progress_circle__complete 2s var(--circle-animation);
+.moxy-progress-circle_complete {
+	animation: moxy-progress-circle_complete 2s var(--circle-animation);
 }
 
-@keyframes progress_circle__complete {
+@keyframes moxy-progress-circle_complete {
 	from {
 		opacity: 0;
 	}
@@ -36,7 +39,7 @@
 		opacity: 1;
 	}
 }
-@keyframes progress_circle__animation {
+@keyframes moxy-progress-circle_animation {
 	from {
 		stroke-dashoffset: var(--circle-radius);
 	}
@@ -131,16 +134,12 @@
 }
 
 .pie {
-	/* Basic layout */
 	display: inline-block;
 	width: inherit;
 	height: inherit;
 	border-radius: 50%;
-	/* A little styling */
 	border: 0.15em solid #fff;
 	box-shadow: 0 0.075em 0.2em 0.05em rgba(0, 0, 0, 0.25);
-
-	/* fixes a minor clipping issue in Chrome */
 	background-origin: border-box;
 }
 .moxy-table {
@@ -193,4 +192,37 @@
 
 .moxy-fade {
 	opacity: 0;
+}
+
+.moxy-linechart .grid {
+	stroke: white; /* Change this based on color? */
+	stroke-dasharray: 1 2;
+	stroke-width: 1;
+}
+
+.moxy-linechart .points {
+	stroke: white;
+	stroke-width: 3;
+}
+
+.moxy-linechart .surfaces {
+	fill-opacity: 0.5;
+}
+
+.moxy-linechart .grid.double {
+	stroke-opacity: 0.4;
+}
+
+.moxy-linechart .labels {
+	font-family: Arial;
+	font-size: 14px;
+	kerning: 1;
+}
+
+.moxy-linechart .labels.x-labels {
+	text-anchor: middle;
+}
+
+.moxy-linechart .labels.y-labels {
+	text-anchor: end;
 }

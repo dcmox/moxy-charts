@@ -10,6 +10,10 @@ export interface IMoxyUIOptions {
 	animation?: string // forwards || infinite alternate
 	text?: string
 	textColor?: TMoxyColor
+	fillColor?: TMoxyColor
+	backgroundColor?: TMoxyColor
+	borderColor?: TMoxyColor
+	captions?: IKeyValuePair
 	fn?: any
 	maxTime?: any
 }
@@ -25,6 +29,11 @@ export type TMoxyColor =
 	| 'banana'
 	| 'skyblue'
 	| 'tangerine'
+	| 'dark'
+	| 'darkblue'
+	| 'grey'
+	| 'light-grey'
+	| 'white'
 
 export const MoxyUIColors = [
 	'green',
@@ -37,6 +46,10 @@ export const MoxyUIColors = [
 	'banana',
 	'skyblue',
 	'tangerine',
+	'dark',
+	'darkblue',
+	'grey',
+	'light-grey',
 ]
 
 export const MoxyUIDefaultOptions = {

@@ -1,16 +1,17 @@
 import {
 	IKeyValuePair,
 	IMoxyUIOptions,
-	MoxyUIColors,
 	MoxyUIDefaultOptions,
 } from './lib/IMoxyUI'
 
 import { barChart } from './components/barChart'
 import { calendar } from './components/calendar'
+import { lineChart } from './components/lineChart'
 import { loadingBar } from './components/loadingBar'
 import { loadingCircle } from './components/loadingCircle'
 import { pieChart } from './components/pieChart'
 import { pieCSSChart } from './components/pieChartCSS'
+import { radarChart } from './components/radarChart'
 import { table } from './components/table'
 import { treeMap } from './components/treeMap'
 
@@ -36,17 +37,14 @@ class MoxyUI {
 	}
 
 	private _data: IKeyValuePair[] = []
-	private _normalized: IKeyValuePair = []
-
 	private _opts: IMoxyUIOptions = MoxyUIDefaultOptions
-	private _title: string = ''
 	constructor(data: IKeyValuePair[], title?: string, opts?: IMoxyUIOptions) {
 		this._data = data
-		if (title) {
-			this._title = title
-		}
 		if (opts) {
 			this._opts = Object.assign(this._opts, opts)
+			if (!this._opts.title && title) {
+				this._opts.title = title
+			}
 		}
 	}
 	public render(
@@ -59,8 +57,11 @@ class MoxyUI {
 			| 'table'
 			| 'donut'
 			| 'calendar'
+			| 'lineChart'
+			| 'radarChart'
 			| 'treemap' = 'bar',
 		opts?: IMoxyUIOptions,
+		data?: IKeyValuePair[],
 	): void {
 		const element: HTMLElement | null = document.querySelector(selector)
 		if (!element) {
@@ -69,26 +70,28 @@ class MoxyUI {
 		if (!opts) {
 			opts = this._opts
 		}
+		const d = data ? data : this._data
 		if (style === 'bar' || style === 'bar-vert') {
-			barChart(this._data, element, style, opts)
+			barChart(d, element, style, opts)
 		} else if (style === 'pie-css') {
-			pieCSSChart(this._data, element, opts)
+			pieCSSChart(d, element, opts)
 		} else if (style === 'pie') {
-			pieChart(this._data, element, opts)
+			pieChart(d, element, opts)
 		} else if (style === 'table') {
-			table(this._data, element, opts)
+			table(d, element, opts)
 		} else if (style === 'treemap') {
-			treeMap(this._data, element, opts)
+			treeMap(d, element, opts)
+		} else if (style === 'lineChart') {
+			lineChart(d, element, opts)
+		} else if (style === 'radarChart') {
+			radarChart(d, element, opts)
 		}
 	}
 
 	public scatterChart(): void {
 		//
 	}
-	// Make configurable axis for labels
-	public lineChart(): void {
-		//
-	}
+
 	public calendar(): void {
 		// calendar widget
 	}
@@ -147,6 +150,47 @@ chart.render('#chartTwo', 'bar')
 chart.render('#chartThree', 'bar-vert')
 chart.render('#chartFour', 'table')
 chart.render('#chartFive', 'treemap')
+
+chart.render(
+	'#radarChart',
+	'radarChart',
+	{
+		fillColor: 'blue',
+		borderColor: 'darkblue',
+		textColor: 'white',
+		title: 'Weekly Downloads',
+		captions: {
+			strength: 'Strength',
+			agility: 'Agility',
+			stamina: 'Stamina',
+			intelligence: 'Intelligence',
+			wisdom: 'Wisdom',
+		},
+	},
+	[
+		{
+			strength: 0.7,
+			agility: 1,
+			stamina: 0.9,
+			intelligence: 0.67,
+			wisdom: 0.8,
+		},
+		{
+			strength: 0.6,
+			agility: 0.9,
+			stamina: 0.8,
+			intelligence: 0.7,
+			wisdom: 0.6,
+		},
+	],
+)
+
+chart.render('#graph', 'lineChart', {
+	backgroundColor: 'blue',
+	fillColor: 'darkblue',
+	textColor: 'white',
+	title: 'Weekly Downloads',
+})
 
 function timeout(ms: number): any {
 	return new Promise((resolve: any) => setTimeout(resolve, ms))
