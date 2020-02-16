@@ -5,6 +5,7 @@ import {
 } from './lib/IMoxyUI'
 
 import { barChart } from './components/barChart'
+import { calculator } from './components/calculator'
 import { calendar } from './components/calendar'
 import { lineChart } from './components/lineChart'
 import { loadingBar } from './components/loadingBar'
@@ -14,7 +15,6 @@ import { pieCSSChart } from './components/pieChartCSS'
 import { radarChart } from './components/radarChart'
 import { table } from './components/table'
 import { treeMap } from './components/treeMap'
-import { calculator } from './components/calculator'
 
 class MoxyUI {
 	public static display(
@@ -222,10 +222,27 @@ MoxyUI.display('#calculator', 'calculator', {
 })
 
 MoxyUI.display('#calendar', 'calendar', {
-	height: 150,
+	height: 200,
 	width: 150,
 	text: 'Loading...',
-	textColor: 'blue',
+	theme: 'blue',
+	textColor: 'white',
+	data: {
+		events: [
+			// tslint:disable: quotemark
+			{
+				date: new Date('February 14, 2020'),
+				label: "Daniel's Birthday",
+				description: "It's party time!",
+			},
+			{ date: new Date('February 14, 2020'), label: "Valentine's Day" },
+			{
+				date: new Date('February 17, 2020'),
+				dateEnd: new Date('February 21, 2020'),
+				label: 'Vacation',
+			},
+		],
+	},
 })
 
 MoxyUI.display('#demo', 'loadingCircle', {

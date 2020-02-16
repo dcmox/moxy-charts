@@ -17,6 +17,7 @@ export interface IMoxyUIOptions {
 	captions?: IKeyValuePair
 	fn?: any
 	maxTime?: any
+	data?: any
 }
 
 export type TMoxyColor =

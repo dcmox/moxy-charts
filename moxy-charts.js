@@ -38,6 +38,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 exports.__esModule = true;
 var IMoxyUI_1 = require("./lib/IMoxyUI");
 var barChart_1 = require("./components/barChart");
+var calculator_1 = require("./components/calculator");
 var calendar_1 = require("./components/calendar");
 var lineChart_1 = require("./components/lineChart");
 var loadingBar_1 = require("./components/loadingBar");
@@ -47,7 +48,6 @@ var pieChartCSS_1 = require("./components/pieChartCSS");
 var radarChart_1 = require("./components/radarChart");
 var table_1 = require("./components/table");
 var treeMap_1 = require("./components/treeMap");
-var calculator_1 = require("./components/calculator");
 var MoxyUI = /** @class */ (function () {
     function MoxyUI(data, title, opts) {
         this._data = [];
@@ -241,10 +241,27 @@ MoxyUI.display('#calculator', 'calculator', {
     theme: 'blue'
 });
 MoxyUI.display('#calendar', 'calendar', {
-    height: 150,
+    height: 200,
     width: 150,
     text: 'Loading...',
-    textColor: 'blue'
+    theme: 'blue',
+    textColor: 'white',
+    data: {
+        events: [
+            // tslint:disable: quotemark
+            {
+                date: new Date('February 14, 2020'),
+                label: "Daniel's Birthday",
+                description: "It's party time!"
+            },
+            { date: new Date('February 14, 2020'), label: "Valentine's Day" },
+            {
+                date: new Date('February 17, 2020'),
+                dateEnd: new Date('February 21, 2020'),
+                label: 'Vacation'
+            },
+        ]
+    }
 });
 MoxyUI.display('#demo', 'loadingCircle', {
     height: 150,

@@ -29,6 +29,11 @@
 				width: 200px;
 				height: 300px;
 			}
+			#calendar {
+				clear: both;
+				margin: 50px 0 200px;
+				color: #444;
+			}
 		</style>
 	</head>
 	<body>
@@ -55,130 +60,7 @@
 
 		<div id="loadingBar" style="width: 1000px;"></div>
 
-		<style>
-			#calendar {
-				clear: both;
-				margin: 50px 0 200px;
-				color: #444;
-			}
-			.moxy-calendar .calendar-header {
-				border-right: 1px solid var(--light-grey);
-				padding: 10px 0;
-			}
-			.moxy-calendar {
-				border: 1px solid var(--light-grey);
-				border-width: 1px 0 1px 1px;
-			}
-			.moxy-calendar .previous {
-				padding: 0 10px 0 0;
-				float: left;
-				color: #888;
-				transform: scale(-1, 1);
-				cursor: pointer;
-			}
-			.moxy-calendar .next {
-				color: #888;
-				padding: 0 10px 0 0;
-				float: right;
-				cursor: pointer;
-			}
-			.moxy-calendar .month-year {
-				text-align: center;
-				cursor: pointer;
-			}
-			.moxy-calendar .calendar-days {
-				border: 1px solid var(--light-grey);
-				border-width: 0 1px 1px 0;
-			}
-			.moxy-calendar .calendar-days span {
-				margin: 0;
-				padding: 0;
-				width: 13.8%;
-				display: inline-block;
-				text-align: center;
-			}
-			.moxy-calendar .calendar-cells {
-				border: 1px solid var(--light-grey);
-				border-width: 0 0 0 1px;
-				width: 100%;
-				display: flex;
-				flex-wrap: wrap;
-			}
-			.moxy-calendar .cell {
-				margin: 0;
-				padding: 0;
-				width: 14.15%;
-				height: 80px;
-				border: 1px solid var(--light-grey);
-				border-width: 0 1px 1px 0;
-				display: inline-block;
-			}
-			.moxy-calendar .cell.prevMonth {
-				background-color: #fafafa;
-			}
-			.moxy-calendar .cell span {
-				padding: 4px;
-			}
-			.moxy-calendar .cell:hover {
-				background-color: #fafafa;
-			}
-		</style>
-
-		<div id="calendar" style="clear: both; width: 800px;">
-			<div class="moxy-calendar">
-				<div class="calendar-header">
-					<div class="previous" title="Previous">&#x27A4;</div>
-					<div class="next" title="Next">&#x27A4;</div>
-					<div class="month-year" title="Select Month">FEB 2020</div>
-				</div>
-				<div class="calendar-days">
-					<span title="Sunday">SUN</span>
-					<span title="Monday">MON</span>
-					<span title="Tuesday">TUE</span>
-					<span title="Wednesday">WED</span>
-					<span title="Thursday">THU</span>
-					<span title="Friday">FRI</span>
-					<span title="Saturday">SAT</span>
-				</div>
-				<div class="calendar-cells">
-					<div class="cell prevMonth"></div>
-					<div class="cell prevMonth"></div>
-					<div class="cell prevMonth"></div>
-					<div class="cell prevMonth"></div>
-					<div class="cell prevMonth"></div>
-					<div class="cell prevMonth"></div>
-					<div class="cell"><span>1</span></div>
-					<div class="cell"><span>2</span></div>
-					<div class="cell"><span>3</span></div>
-					<div class="cell"><span>4</span></div>
-					<div class="cell"><span>5</span></div>
-					<div class="cell"><span>6</span></div>
-					<div class="cell"><span>7</span></div>
-					<div class="cell"><span>8</span></div>
-					<div class="cell"><span>9</span></div>
-					<div class="cell"><span>10</span></div>
-					<div class="cell"><span>11</span></div>
-					<div class="cell"><span>12</span></div>
-					<div class="cell"><span>13</span></div>
-					<div class="cell"><span>14</span></div>
-					<div class="cell"><span>15</span></div>
-					<div class="cell"><span>16</span></div>
-					<div class="cell"><span>17</span></div>
-					<div class="cell"><span>18</span></div>
-					<div class="cell"><span>19</span></div>
-					<div class="cell"><span>20</span></div>
-					<div class="cell"><span>21</span></div>
-					<div class="cell"><span>22</span></div>
-					<div class="cell"><span>23</span></div>
-					<div class="cell"><span>24</span></div>
-					<div class="cell"><span>25</span></div>
-					<div class="cell"><span>26</span></div>
-					<div class="cell"><span>27</span></div>
-					<div class="cell"><span>28</span></div>
-					<div class="cell"><span>29</span></div>
-				</div>
-			</div>
-		</div>
+		<div id="calendar" style="clear: both; width: 300px;"></div>
 		<br />
 
 		<script src="./dist/main.js" type="text/javascript" defer></script>
