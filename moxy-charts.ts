@@ -14,6 +14,7 @@ import { pieCSSChart } from './components/pieChartCSS'
 import { radarChart } from './components/radarChart'
 import { table } from './components/table'
 import { treeMap } from './components/treeMap'
+import { calculator } from './components/calculator'
 
 class MoxyUI {
 	public static display(
@@ -31,6 +32,9 @@ class MoxyUI {
 			return calendar(element, opts)
 		} else if (elem === 'loadingBar') {
 			loadingBar(element, opts)
+			return true
+		} else if (elem === 'calculator') {
+			calculator(element, opts)
 			return true
 		}
 		return false
@@ -211,6 +215,10 @@ MoxyUI.display('#loadingBar', 'loadingBar', {
 		await sleep(15000, () => true)
 	},
 	maxTime: '10000', // ms
+})
+
+MoxyUI.display('#calculator', 'calculator', {
+	theme: 'blue',
 })
 
 MoxyUI.display('#calendar', 'calendar', {

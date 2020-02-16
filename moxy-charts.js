@@ -47,6 +47,7 @@ var pieChartCSS_1 = require("./components/pieChartCSS");
 var radarChart_1 = require("./components/radarChart");
 var table_1 = require("./components/table");
 var treeMap_1 = require("./components/treeMap");
+var calculator_1 = require("./components/calculator");
 var MoxyUI = /** @class */ (function () {
     function MoxyUI(data, title, opts) {
         this._data = [];
@@ -72,6 +73,10 @@ var MoxyUI = /** @class */ (function () {
         }
         else if (elem === 'loadingBar') {
             loadingBar_1.loadingBar(element, opts);
+            return true;
+        }
+        else if (elem === 'calculator') {
+            calculator_1.calculator(element, opts);
             return true;
         }
         return false;
@@ -231,6 +236,9 @@ MoxyUI.display('#loadingBar', 'loadingBar', {
         });
     }); },
     maxTime: '10000'
+});
+MoxyUI.display('#calculator', 'calculator', {
+    theme: 'blue'
 });
 MoxyUI.display('#calendar', 'calendar', {
     height: 150,

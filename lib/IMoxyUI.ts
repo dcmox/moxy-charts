@@ -13,6 +13,7 @@ export interface IMoxyUIOptions {
 	fillColor?: TMoxyColor
 	backgroundColor?: TMoxyColor
 	borderColor?: TMoxyColor
+	theme?: TMoxyColor
 	captions?: IKeyValuePair
 	fn?: any
 	maxTime?: any
