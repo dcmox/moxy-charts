@@ -7,6 +7,7 @@ import {
 import { barChart } from './components/barChart'
 import { calculator } from './components/calculator'
 import { calendar } from './components/calendar'
+import { dropdown } from './components/dropdown'
 import { lineChart } from './components/lineChart'
 import { loadingBar } from './components/loadingBar'
 import { loadingCircle } from './components/loadingCircle'
@@ -15,8 +16,11 @@ import { pieCSSChart } from './components/pieChartCSS'
 import { radarChart } from './components/radarChart'
 import { table } from './components/table'
 import { treeMap } from './components/treeMap'
-
 class MoxyUI {
+	public static init(opts: IMoxyUIOptions): void {
+		dropdown(opts)
+		// bindAll('.moxy-dropdown')
+	}
 	public static display(
 		selector: string,
 		elem: 'loadingCircle' | 'calendar' | 'loadingBar',
@@ -251,3 +255,5 @@ MoxyUI.display('#demo', 'loadingCircle', {
 	text: 'Loading...',
 	textColor: 'blue',
 })
+
+MoxyUI.init({ backgroundColor: 'blue', theme: 'blue' })

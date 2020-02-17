@@ -40,6 +40,7 @@ var IMoxyUI_1 = require("./lib/IMoxyUI");
 var barChart_1 = require("./components/barChart");
 var calculator_1 = require("./components/calculator");
 var calendar_1 = require("./components/calendar");
+var dropdown_1 = require("./components/dropdown");
 var lineChart_1 = require("./components/lineChart");
 var loadingBar_1 = require("./components/loadingBar");
 var loadingCircle_1 = require("./components/loadingCircle");
@@ -60,6 +61,10 @@ var MoxyUI = /** @class */ (function () {
             }
         }
     }
+    MoxyUI.init = function (opts) {
+        dropdown_1.dropdown(opts);
+        // bindAll('.moxy-dropdown')
+    };
     MoxyUI.display = function (selector, elem, opts) {
         var element = document.querySelector(selector);
         if (!element) {
@@ -269,3 +274,4 @@ MoxyUI.display('#demo', 'loadingCircle', {
     text: 'Loading...',
     textColor: 'blue'
 });
+MoxyUI.init({ backgroundColor: 'blue', theme: 'blue' });
