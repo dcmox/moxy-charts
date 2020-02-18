@@ -154,6 +154,7 @@
 }
 .moxy-table thead {
 	background-color: #eee;
+	text-align: left;
 }
 .moxy-table th,
 .moxy-table td {
@@ -167,6 +168,48 @@
 }
 .moxy-table thead th {
 	font-weight: normal;
+}
+
+.moxy-table tbody tr:hover {
+	background-color: #fff;
+}
+
+.moxy-table th[data-sort-dir='asc']:after {
+	font-size: 21px;
+	position: absolute;
+	right: 0;
+	top: -10;
+	content: '\1F891';
+	float: right;
+}
+.moxy-table th[data-sort-dir='desc']:after {
+	font-size: 21px;
+	position: absolute;
+	right: 0;
+	top: 8px;
+	content: '\1F893';
+	float: right;
+}
+
+.moxy-table .resizer {
+	top: 0;
+	right: 0;
+	width: 5px;
+	position: absolute;
+	cursor: col-resize;
+	user-select: none;
+}
+
+.moxy-table *,
+.moxy-table *::before,
+.moxy-table *::after {
+	box-sizing: border-box;
+}
+.moxy-table {
+	border-collapse: collapse;
+}
+.moxy-table .columnSelector:hover {
+	border-right: 2px solid var(--theme);
 }
 
 /** Tree Map **/
@@ -408,6 +451,7 @@
 	overflow: hidden;
 }
 
+/** Moxy Dropdown **/
 .moxy-dropdown {
 	position: relative;
 }
@@ -437,6 +481,9 @@
 	margin: 0;
 	padding: 0;
 	width: calc(100%);
+	z-index: 3;
+	position: absolute;
+	background-color: #fff;
 }
 .moxy-dropdown li {
 	list-style: none;
@@ -444,6 +491,10 @@
 	padding: 8px;
 	border-bottom: 1px solid #eee;
 	margin: 0;
+}
+.moxy-dropdown li.active {
+	background-color: var(--backgroundColor);
+	color: #fff;
 }
 .moxy-dropdown li:hover {
 	cursor: pointer;

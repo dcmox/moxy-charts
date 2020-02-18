@@ -40,6 +40,7 @@ var IMoxyUI_1 = require("./lib/IMoxyUI");
 var barChart_1 = require("./components/barChart");
 var calculator_1 = require("./components/calculator");
 var calendar_1 = require("./components/calendar");
+var dataTable_1 = require("./components/dataTable");
 var dropdown_1 = require("./components/dropdown");
 var lineChart_1 = require("./components/lineChart");
 var loadingBar_1 = require("./components/loadingBar");
@@ -63,6 +64,7 @@ var MoxyUI = /** @class */ (function () {
     }
     MoxyUI.init = function (opts) {
         dropdown_1.dropdown(opts);
+        table_1.table(opts);
         // bindAll('.moxy-dropdown')
     };
     MoxyUI.display = function (selector, elem, opts) {
@@ -105,8 +107,8 @@ var MoxyUI = /** @class */ (function () {
         else if (style === 'pie') {
             pieChart_1.pieChart(d, element, opts);
         }
-        else if (style === 'table') {
-            table_1.table(d, element, opts);
+        else if (style === 'dataTable') {
+            dataTable_1.dataTable(d, element, opts);
         }
         else if (style === 'treemap') {
             treeMap_1.treeMap(d, element, opts);
@@ -173,7 +175,7 @@ var chart = new MoxyUI(data, 'Weekly Downloads');
 chart.render('#chart', 'pie');
 chart.render('#chartTwo', 'bar');
 chart.render('#chartThree', 'bar-vert');
-chart.render('#chartFour', 'table');
+chart.render('#chartFour', 'dataTable');
 chart.render('#chartFive', 'treemap');
 chart.render('#radarChart', 'radarChart', {
     fillColor: 'blue',

@@ -52,6 +52,7 @@ export const calculator = (element: HTMLElement, opts: IMoxyUIOptions) => {
 	let lastAction: string = ''
 	let lastOp: string = ''
 	let isLocked: boolean = false
+	/* TODO - Fix SQR, fix subtracting using = over and over when not 0 */
 	calc.onkeypress = e => {
 		const key = String.fromCharCode(e.which)
 		if (calc && calc.querySelector(`div[data-op='${key}']`)) {

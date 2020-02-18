@@ -7,6 +7,7 @@ import {
 import { barChart } from './components/barChart'
 import { calculator } from './components/calculator'
 import { calendar } from './components/calendar'
+import { dataTable } from './components/dataTable'
 import { dropdown } from './components/dropdown'
 import { lineChart } from './components/lineChart'
 import { loadingBar } from './components/loadingBar'
@@ -19,6 +20,7 @@ import { treeMap } from './components/treeMap'
 class MoxyUI {
 	public static init(opts: IMoxyUIOptions): void {
 		dropdown(opts)
+		table(opts)
 		// bindAll('.moxy-dropdown')
 	}
 	public static display(
@@ -62,7 +64,7 @@ class MoxyUI {
 			| 'bar-vert'
 			| 'pie'
 			| 'pie-css'
-			| 'table'
+			| 'dataTable'
 			| 'donut'
 			| 'calendar'
 			| 'lineChart'
@@ -85,8 +87,8 @@ class MoxyUI {
 			pieCSSChart(d, element, opts)
 		} else if (style === 'pie') {
 			pieChart(d, element, opts)
-		} else if (style === 'table') {
-			table(d, element, opts)
+		} else if (style === 'dataTable') {
+			dataTable(d, element, opts)
 		} else if (style === 'treemap') {
 			treeMap(d, element, opts)
 		} else if (style === 'lineChart') {
@@ -156,7 +158,7 @@ const chart = new MoxyUI(data, 'Weekly Downloads')
 chart.render('#chart', 'pie')
 chart.render('#chartTwo', 'bar')
 chart.render('#chartThree', 'bar-vert')
-chart.render('#chartFour', 'table')
+chart.render('#chartFour', 'dataTable')
 chart.render('#chartFive', 'treemap')
 
 chart.render(

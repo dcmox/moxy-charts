@@ -19,6 +19,7 @@ exports.calculator = function (element, opts) {
     var lastAction = '';
     var lastOp = '';
     var isLocked = false;
+    /* TODO - Fix SQR, fix subtracting using = over and over when not 0 */
     calc.onkeypress = function (e) {
         var key = String.fromCharCode(e.which);
         if (calc && calc.querySelector("div[data-op='" + key + "']")) {
