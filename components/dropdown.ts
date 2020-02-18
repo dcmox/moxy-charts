@@ -108,7 +108,7 @@ export const dropdown = (opts: IMoxyUIOpts) => {
 			setTimeout(() => {
 				list.classList.add('hidden')
 				queryAll(list, true)('li.active').removeClass('active')
-			}, 120)
+			}, 150)
 
 		// Initialize list to being hidden and append our custom elements
 		list.classList.add('hidden')

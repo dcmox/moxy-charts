@@ -93,7 +93,7 @@ exports.dropdown = function (opts) {
             return setTimeout(function () {
                 list.classList.add('hidden');
                 query_1.queryAll(list, true)('li.active').removeClass('active');
-            }, 120);
+            }, 150);
         };
         // Initialize list to being hidden and append our custom elements
         list.classList.add('hidden');

@@ -50,56 +50,40 @@ exports.bindAll = function (selector, fn) {
     });
 };
 var queryMethods = {
-    remove: function (elements) {
-        elements.forEach(function (el) { return el.remove(); });
+    remove: function (el) {
+        el.remove();
     },
-    hide: function (elements) {
-        elements.forEach(function (el) { return (el.style.display = 'none'); });
+    hide: function (el) {
+        el.style.display = 'none';
     },
-    show: function (elements) {
-        elements.forEach(function (el) {
-            el.style.display = 'block';
-            el.style.opacity = 1;
-        });
+    show: function (el) {
+        el.style.display = 'block';
+        el.style.opacity = 1;
     },
-    append: function (elements) {
+    append: function (el) {
         var children = [];
         for (var _i = 1; _i < arguments.length; _i++) {
             children[_i - 1] = arguments[_i];
         }
-        elements.forEach(function (el) {
-            el.append.apply(el, children);
-        });
+        el.append.apply(el, children);
     },
-    removeClass: function (elements, cls) {
-        elements.forEach(function (el) {
-            el.classList.remove(cls);
-        });
+    removeClass: function (el, cls) {
+        el.classList.remove(cls);
     },
-    addClass: function (elements, cls) {
-        elements.forEach(function (el) {
-            el.classList.add(cls);
-        });
+    addClass: function (el, cls) {
+        el.classList.add(cls);
     },
-    attr: function (elements, attr, value) {
-        elements.forEach(function (el) {
-            el.setAttribute(attr, value);
-        });
+    attr: function (el, attr, value) {
+        el.setAttribute(attr, value);
     },
-    removeAttr: function (elements, attr) {
-        elements.forEach(function (el) {
-            el.removeAttribute(attr);
-        });
+    removeAttr: function (el, attr) {
+        el.removeAttribute(attr);
     },
-    removeProp: function (elements, prop) {
-        elements.forEach(function (el) {
-            el.removeProperty(prop);
-        });
+    removeProp: function (el, prop) {
+        el.style.removeProperty(prop);
     },
-    prop: function (elements, prop, value) {
-        elements.forEach(function (el) {
-            el.setProperty(prop, value);
-        });
+    prop: function (el, prop, value) {
+        el.style.setProperty(prop, value);
     }
 };
 var queryHandler = {

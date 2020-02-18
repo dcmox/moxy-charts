@@ -49,52 +49,36 @@ export const bindAll = (
 }
 
 const queryMethods = {
-	remove(elements: HTMLElement[]) {
-		elements.forEach((el: any) => el.remove())
+	remove(el: HTMLElement) {
+		el.remove()
 	},
-	hide(elements: HTMLElement[]) {
-		elements.forEach((el: any) => (el.style.display = 'none'))
+	hide(el: HTMLElement) {
+		el.style.display = 'none'
 	},
-	show(elements: HTMLElement[]) {
-		elements.forEach((el: any) => {
-			el.style.display = 'block'
-			el.style.opacity = 1
-		})
+	show(el: HTMLElement) {
+		el.style.display = 'block'
+		el.style.opacity = 1
 	},
-	append(elements: HTMLElement[], ...children: any) {
-		elements.forEach((el: any) => {
-			el.append(...children)
-		})
+	append(el: HTMLElement, ...children: any) {
+		el.append(...children)
 	},
-	removeClass(elements: HTMLElement[], cls: string) {
-		elements.forEach((el: any) => {
-			el.classList.remove(cls)
-		})
+	removeClass(el: HTMLElement, cls: string) {
+		el.classList.remove(cls)
 	},
-	addClass(elements: HTMLElement[], cls: string) {
-		elements.forEach((el: any) => {
-			el.classList.add(cls)
-		})
+	addClass(el: HTMLElement, cls: string) {
+		el.classList.add(cls)
 	},
-	attr(elements: HTMLElement[], attr: string, value: string) {
-		elements.forEach((el: any) => {
-			el.setAttribute(attr, value)
-		})
+	attr(el: HTMLElement, attr: string, value: string) {
+		el.setAttribute(attr, value)
 	},
-	removeAttr(elements: HTMLElement[], attr: string) {
-		elements.forEach((el: any) => {
-			el.removeAttribute(attr)
-		})
+	removeAttr(el: HTMLElement, attr: string) {
+		el.removeAttribute(attr)
 	},
-	removeProp(elements: HTMLElement[], prop: string) {
-		elements.forEach((el: any) => {
-			el.removeProperty(prop)
-		})
+	removeProp(el: HTMLElement, prop: string) {
+		el.style.removeProperty(prop)
 	},
-	prop(elements: HTMLElement[], prop: string, value: string) {
-		elements.forEach((el: any) => {
-			el.setProperty(prop, value)
-		})
+	prop(el: HTMLElement, prop: string, value: string) {
+		el.style.setProperty(prop, value)
 	},
 }
 
