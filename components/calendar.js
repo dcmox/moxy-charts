@@ -1,6 +1,7 @@
 "use strict";
 exports.__esModule = true;
 var query_1 = require("./query");
+/* Todo - enable date picker option, show previous month and following month dates but grayed out. */
 exports.shortDate = function (date) {
     return date
         .toLocaleDateString('en-US', {

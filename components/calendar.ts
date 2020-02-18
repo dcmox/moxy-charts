@@ -1,6 +1,7 @@
 import { IMoxyUIOptions } from '../lib/IMoxyUI'
 import { bindAll, query, queryAll } from './query'
 
+/* Todo - enable date picker option, show previous month and following month dates but grayed out. */
 export const shortDate = (date: Date) =>
 	date
 		.toLocaleDateString('en-US', {
