@@ -40,6 +40,7 @@ var IMoxyUI_1 = require("./lib/IMoxyUI");
 var barChart_1 = require("./components/barChart");
 var calculator_1 = require("./components/calculator");
 var calendar_1 = require("./components/calendar");
+var colorPicker_1 = require("./components/colorPicker");
 var dataTable_1 = require("./components/dataTable");
 var dropdown_1 = require("./components/dropdown");
 var lineChart_1 = require("./components/lineChart");
@@ -277,3 +278,4 @@ MoxyUI.display('#demo', 'loadingCircle', {
     textColor: 'blue'
 });
 MoxyUI.init({ backgroundColor: 'blue', theme: 'blue' });
+colorPicker_1.colorPicker();

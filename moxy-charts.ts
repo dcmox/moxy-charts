@@ -7,6 +7,7 @@ import {
 import { barChart } from './components/barChart'
 import { calculator } from './components/calculator'
 import { calendar } from './components/calendar'
+import { colorPicker } from './components/colorPicker'
 import { dataTable } from './components/dataTable'
 import { dropdown } from './components/dropdown'
 import { lineChart } from './components/lineChart'
@@ -259,3 +260,5 @@ MoxyUI.display('#demo', 'loadingCircle', {
 })
 
 MoxyUI.init({ backgroundColor: 'blue', theme: 'blue' })
+
+colorPicker()

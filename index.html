@@ -107,8 +107,59 @@
 			</table>
 		</div>
 
+		<!----
+		* Slideshow 
+		* 3D Image rotation
+		-->
+		<style>
+			.moxy-slideshow {
+				display: none;
+			}
+			/* Method to detect if a color should contain a white or black font color */
+			.moxy-color-picker {
+			}
+			.moxy-color-picker span {
+				display: inline-block;
+				width: 2px;
+				height: 2px;
+			}
+		</style>
+		<div id="" class="moxy-color-picker"></div>
+		<div
+			id="slideshow"
+			class="moxy-slideshow"
+			data-width="300"
+			data-height="300"
+		>
+			<figure>
+				<img src="img/hat.jpg" title="Fancy Hat" />
+				<figcaption>
+					Fancy hat, woman not included!
+				</figcaption>
+			</figure>
+			<figure>
+				<img src="img/hat-basic.jpg" title="Sports Hat" />
+				<figcaption>
+					Sports hat
+				</figcaption>
+			</figure>
+			<figure>
+				<img src="img/winter-coat.jpg" title="Winter coat" />
+				<figcaption>
+					Winter coat
+				</figcaption>
+			</figure>
+			<figure>
+				<img src="img/socks.jpg" title="Fancy socks" />
+				<figcaption>
+					Socks
+				</figcaption>
+			</figure>
+		</div>
+
 		<div id="calendar" style="clear: both; width: 300px;"></div>
 		<br />
+		<div id=""></div>
 
 		<script src="./dist/main.js" type="text/javascript" defer></script>
 	</body>
