@@ -110,7 +110,7 @@ var queryHandler = {
                 for (var _i = 0; _i < arguments.length; _i++) {
                     args[_i] = arguments[_i];
                 }
-                return null;
+                return [];
             };
         }
         else if (typeof target.elements[0][keyOrMethod] !== 'function' &&
@@ -122,12 +122,13 @@ var queryHandler = {
             for (var _i = 0; _i < arguments.length; _i++) {
                 args[_i] = arguments[_i];
             }
-            var result = target.elements.forEach(function (el) {
+            var result = [];
+            target.elements.forEach(function (el) {
                 if (el[keyOrMethod]) {
                     el[keyOrMethod].apply(el, args);
                 }
                 else if (queryMethods[keyOrMethod]) {
-                    queryMethods[keyOrMethod].apply(queryMethods, __spreadArrays([el], args));
+                    result.push(queryMethods[keyOrMethod].apply(queryMethods, __spreadArrays([el], args)));
                 }
             });
             return result;

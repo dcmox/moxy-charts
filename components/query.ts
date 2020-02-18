@@ -101,7 +101,7 @@ const queryMethods = {
 const queryHandler = {
 	get: (target: any, keyOrMethod: string) => {
 		if (target.elements.length === 0) {
-			return (...args: any) => null
+			return (...args: any) => []
 		} else if (
 			typeof target.elements[0][keyOrMethod] !== 'function' &&
 			!queryMethods[keyOrMethod]
@@ -109,11 +109,12 @@ const queryHandler = {
 			return target.elements.map((el: any) => el[keyOrMethod])
 		}
 		return (...args: any) => {
-			const result = target.elements.forEach((el: any) => {
+			const result: any = []
+			target.elements.forEach((el: any) => {
 				if (el[keyOrMethod]) {
 					el[keyOrMethod](...args)
 				} else if (queryMethods[keyOrMethod]) {
-					queryMethods[keyOrMethod](el, ...args)
+					result.push(queryMethods[keyOrMethod](el, ...args))
 				}
 			})
 			return result
