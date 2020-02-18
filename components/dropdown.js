@@ -31,7 +31,7 @@ exports.dropdown = function (opts) {
             option.onclick = function () {
                 input.value = option.dataset.label;
                 input.dataset.value = option.dataset.value;
-                query_1.queryAll(select)('option').removeAttr('selected');
+                query_1.queryAll(select, true)('option').removeAttribute('selected');
                 query_1.query(select)("option[value=\"" + option.dataset.value + "\"]").setAttribute('selected', 'selected');
                 list.classList.add('hidden');
             };
@@ -67,7 +67,7 @@ exports.dropdown = function (opts) {
             }
             // Handle clearing out selection
             if (e.target.value.trim() === '') {
-                query_1.queryAll(select)('option').removeAttr('selected');
+                query_1.queryAll(select, true)('option').removeAttribute('selected');
                 input.dataset.value = '';
                 return;
             }

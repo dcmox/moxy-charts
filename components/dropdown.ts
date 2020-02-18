@@ -35,7 +35,7 @@ export const dropdown = (opts: IMoxyUIOpts) => {
 			option.onclick = () => {
 				input.value = option.dataset.label
 				input.dataset.value = option.dataset.value
-				queryAll(select)('option').removeAttr('selected')
+				queryAll(select, true)('option').removeAttribute('selected')
 				query(select)(
 					`option[value="${option.dataset.value}"]`,
 				).setAttribute('selected', 'selected')
@@ -79,7 +79,7 @@ export const dropdown = (opts: IMoxyUIOpts) => {
 
 			// Handle clearing out selection
 			if (e.target.value.trim() === '') {
-				queryAll(select)('option').removeAttr('selected')
+				queryAll(select, true)('option').removeAttribute('selected')
 				input.dataset.value = ''
 				return
 			}
