@@ -9,17 +9,17 @@ exports.query = function (selector) {
     return document.querySelector(selector) || false;
 };
 var queryMethods = {
-    items: [],
+    elements: [],
     remove: function () {
-        this.items.forEach(function (item) { return item.remove(); });
+        this.elements.forEach(function (el) { return el.remove(); });
     },
     hide: function () {
-        this.items.forEach(function (item) { return (item.style.display = 'none'); });
+        this.elements.forEach(function (el) { return (el.style.display = 'none'); });
     },
     show: function () {
-        this.items.forEach(function (item) {
-            item.style.display = 'block';
-            item.style.opacity = 1;
+        this.elements.forEach(function (el) {
+            el.style.display = 'block';
+            el.style.opacity = 1;
         });
     },
     append: function () {
@@ -27,38 +27,38 @@ var queryMethods = {
         for (var _i = 0; _i < arguments.length; _i++) {
             children[_i] = arguments[_i];
         }
-        this.items.forEach(function (item) {
-            item.append.apply(item, children);
+        this.elements.forEach(function (el) {
+            el.append.apply(el, children);
         });
     },
     removeClass: function (cls) {
-        this.items.forEach(function (item) {
-            item.classList.remove(cls);
+        this.elements.forEach(function (el) {
+            el.classList.remove(cls);
         });
     },
     addClass: function (cls) {
-        this.items.forEach(function (item) {
-            item.classList.add(cls);
+        this.elements.forEach(function (el) {
+            el.classList.add(cls);
         });
     },
     attr: function (attr, value) {
-        this.items.forEach(function (item) {
-            item.setAttribute(attr, value);
+        this.elements.forEach(function (el) {
+            el.setAttribute(attr, value);
         });
     },
     removeAttr: function (attr) {
-        this.items.forEach(function (item) {
-            item.removeAttribute(attr);
+        this.elements.forEach(function (el) {
+            el.removeAttribute(attr);
         });
     },
     removeProp: function (prop) {
-        this.items.forEach(function (item) {
-            item.removeProperty(prop);
+        this.elements.forEach(function (el) {
+            el.removeProperty(prop);
         });
     },
     prop: function (prop, value) {
-        this.items.forEach(function (item) {
-            item.setProperty(prop, value);
+        this.elements.forEach(function (el) {
+            el.setProperty(prop, value);
         });
     }
 };

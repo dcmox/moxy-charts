@@ -8,52 +8,52 @@ export const query = (selector: string | HTMLElement) => {
 }
 
 const queryMethods = {
-	items: [],
+	elements: [],
 	remove() {
-		this.items.forEach((item: any) => item.remove())
+		this.elements.forEach((el: any) => el.remove())
 	},
 	hide() {
-		this.items.forEach((item: any) => (item.style.display = 'none'))
+		this.elements.forEach((el: any) => (el.style.display = 'none'))
 	},
 	show() {
-		this.items.forEach((item: any) => {
-			item.style.display = 'block'
-			item.style.opacity = 1
+		this.elements.forEach((el: any) => {
+			el.style.display = 'block'
+			el.style.opacity = 1
 		})
 	},
 	append(...children: any) {
-		this.items.forEach((item: any) => {
-			item.append(...children)
+		this.elements.forEach((el: any) => {
+			el.append(...children)
 		})
 	},
 	removeClass(cls: string) {
-		this.items.forEach((item: any) => {
-			item.classList.remove(cls)
+		this.elements.forEach((el: any) => {
+			el.classList.remove(cls)
 		})
 	},
 	addClass(cls: string) {
-		this.items.forEach((item: any) => {
-			item.classList.add(cls)
+		this.elements.forEach((el: any) => {
+			el.classList.add(cls)
 		})
 	},
 	attr(attr: string, value: string) {
-		this.items.forEach((item: any) => {
-			item.setAttribute(attr, value)
+		this.elements.forEach((el: any) => {
+			el.setAttribute(attr, value)
 		})
 	},
 	removeAttr(attr: string) {
-		this.items.forEach((item: any) => {
-			item.removeAttribute(attr)
+		this.elements.forEach((el: any) => {
+			el.removeAttribute(attr)
 		})
 	},
 	removeProp(prop: string) {
-		this.items.forEach((item: any) => {
-			item.removeProperty(prop)
+		this.elements.forEach((el: any) => {
+			el.removeProperty(prop)
 		})
 	},
 	prop(prop: string, value: string) {
-		this.items.forEach((item: any) => {
-			item.setProperty(prop, value)
+		this.elements.forEach((el: any) => {
+			el.setProperty(prop, value)
 		})
 	},
 }
