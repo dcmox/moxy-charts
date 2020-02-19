@@ -28,8 +28,3 @@ export const treeView = (opts: IMoxyUIOptions) => {
 		})
 	})
 }
-
-// const toggleNode = (node: HTMLElement) => {
-// 	console.log('click!')
-// 	query(node)('ul').classList.toggle('expanded')
-// }

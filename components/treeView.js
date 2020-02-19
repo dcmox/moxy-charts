@@ -30,7 +30,3 @@ exports.treeView = function (opts) {
         });
     });
 };
-// const toggleNode = (node: HTMLElement) => {
-// 	console.log('click!')
-// 	query(node)('ul').classList.toggle('expanded')
-// }
