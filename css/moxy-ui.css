@@ -549,6 +549,22 @@
 	cursor: pointer;
 }
 
+/*** Moxy accordian ***/
+.moxy-accordian h1,
+.moxy-accordian h2,
+.moxy-accordian h3,
+.moxy-accordian h4 {
+	cursor: pointer;
+}
+
+.moxy-accordian p,
+.moxy-accordian div {
+	max-height: 0;
+	margin: 0;
+	overflow: hidden;
+	transition: max-height 0.2s ease-out;
+}
+
 /*** Moxy loader ***/
 .loader {
 	border: 16px solid #f3f3f3; /* Light grey */
@@ -587,7 +603,7 @@
 	}
 }
 
-@keyframes fill {
+@keyframes fade-loader {
 	0% {
 		border-right: 16px solid var(--blue);
 	}
@@ -602,10 +618,22 @@
 	}
 }
 
-.fillLoader {
+.fade-loader {
 	border: 16px solid #f3f3f3; /* Light grey */
 	border-radius: 50%;
 	width: 60px;
 	height: 60px;
-	animation: fill 3s ease-in-out infinite;
+	animation: fade-loader 3s ease-in-out infinite;
+}
+
+/*** Moxy Scroll Track ***/
+.moxy-progress-scroll .moxy-scroll-progress-track {
+	width: 100%;
+	height: 5px;
+	background-color: #eee;
+}
+.moxy-progress-scroll .moxy-scroll-progress-percent {
+	width: 0%;
+	height: 5px;
+	background-color: var(--green);
 }

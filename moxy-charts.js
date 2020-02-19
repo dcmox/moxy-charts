@@ -37,10 +37,10 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 };
 exports.__esModule = true;
 var IMoxyUI_1 = require("./lib/IMoxyUI");
+var accordian_1 = require("./components/accordian");
 var barChart_1 = require("./components/barChart");
 var calculator_1 = require("./components/calculator");
 var calendar_1 = require("./components/calendar");
-var colorPicker_1 = require("./components/colorPicker");
 var dataTable_1 = require("./components/dataTable");
 var dropdown_1 = require("./components/dropdown");
 var lineChart_1 = require("./components/lineChart");
@@ -48,9 +48,11 @@ var loadingBar_1 = require("./components/loadingBar");
 var loadingCircle_1 = require("./components/loadingCircle");
 var pieChart_1 = require("./components/pieChart");
 var pieChartCSS_1 = require("./components/pieChartCSS");
+var progressScroll_1 = require("./components/progressScroll");
 var radarChart_1 = require("./components/radarChart");
 var table_1 = require("./components/table");
 var treeMap_1 = require("./components/treeMap");
+var treeView_1 = require("./components/treeView");
 var MoxyUI = /** @class */ (function () {
     function MoxyUI(data, title, opts) {
         this._data = [];
@@ -66,7 +68,9 @@ var MoxyUI = /** @class */ (function () {
     MoxyUI.init = function (opts) {
         dropdown_1.dropdown(opts);
         table_1.table(opts);
-        // bindAll('.moxy-dropdown')
+        treeView_1.treeView(opts);
+        accordian_1.accordian(opts);
+        progressScroll_1.progressScroll(opts);
     };
     MoxyUI.display = function (selector, elem, opts) {
         var element = document.querySelector(selector);
@@ -278,4 +282,4 @@ MoxyUI.display('#demo', 'loadingCircle', {
     textColor: 'blue'
 });
 MoxyUI.init({ backgroundColor: 'blue', theme: 'blue' });
-colorPicker_1.colorPicker();
+// colorPicker()

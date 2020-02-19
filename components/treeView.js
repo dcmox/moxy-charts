@@ -5,7 +5,9 @@ var svg_1 = require("./svg");
 exports.treeView = function (opts) {
     query_1.queryAll('.moxyTreeView').forEach(function (tv) {
         var _a;
-        if (tv.dataset && tv.dataset.showToggle) {
+        if (tv.dataset &&
+            tv.dataset.showToggle &&
+            tv.dataset.showToggle === 'true') {
             var el = svg_1.elem('div', { "class": 'moxyTreeViewOpts' });
             el.innerHTML =
                 '<span class="expand">Expand</span> <span class="collapse">Collapse</span>';

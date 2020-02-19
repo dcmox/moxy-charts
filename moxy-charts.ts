@@ -4,6 +4,7 @@ import {
 	MoxyUIDefaultOptions,
 } from './lib/IMoxyUI'
 
+import { accordian } from './components/accordian'
 import { barChart } from './components/barChart'
 import { calculator } from './components/calculator'
 import { calendar } from './components/calendar'
@@ -15,14 +16,19 @@ import { loadingBar } from './components/loadingBar'
 import { loadingCircle } from './components/loadingCircle'
 import { pieChart } from './components/pieChart'
 import { pieCSSChart } from './components/pieChartCSS'
+import { progressScroll } from './components/progressScroll'
 import { radarChart } from './components/radarChart'
 import { table } from './components/table'
 import { treeMap } from './components/treeMap'
+import { treeView } from './components/treeView'
+
 class MoxyUI {
 	public static init(opts: IMoxyUIOptions): void {
 		dropdown(opts)
 		table(opts)
-		// bindAll('.moxy-dropdown')
+		treeView(opts)
+		accordian(opts)
+		progressScroll(opts)
 	}
 	public static display(
 		selector: string,
@@ -261,4 +267,4 @@ MoxyUI.display('#demo', 'loadingCircle', {
 
 MoxyUI.init({ backgroundColor: 'blue', theme: 'blue' })
 
-colorPicker()
+// colorPicker()

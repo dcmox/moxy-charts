@@ -3,7 +3,11 @@ import { elem } from './svg'
 
 export const treeView = (opts: IMoxyUIOptions) => {
 	queryAll('.moxyTreeView').forEach((tv: HTMLElement) => {
-		if (tv.dataset && tv.dataset.showToggle) {
+		if (
+			tv.dataset &&
+			tv.dataset.showToggle &&
+			tv.dataset.showToggle === 'true'
+		) {
 			const el = elem('div', { class: 'moxyTreeViewOpts' })
 			el.innerHTML =
 				'<span class="expand">Expand</span> <span class="collapse">Collapse</span>'
