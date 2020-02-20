@@ -406,8 +406,9 @@
 .moxy-calendar .calendar-cells {
 	border: 1px solid var(--light-grey);
 	border-width: 0 0 0 1px;
-	width: 100%;
+	width: calc(100% - 1px);
 	display: flex;
+	background-color: #fff;
 	flex-wrap: wrap;
 }
 .moxy-calendar .cell {
