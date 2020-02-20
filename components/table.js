@@ -2,7 +2,7 @@
 exports.__esModule = true;
 var query_1 = require("./query");
 var svg_1 = require("./svg");
-/* Add ability to search, data-searchable */
+/* Add ability to search, data-searchable, pagination */
 exports.table = function (opts) {
     query_1.queryAll('.moxy-table').forEach(function (tbl) {
         tbl.style.setProperty('--theme', "var(--" + (opts.theme || 'grey') + ")");

@@ -2,7 +2,7 @@ import { IMoxyUIOptions } from '../lib/IMoxyUI'
 import { query, queryAll } from './query'
 import { elem } from './svg'
 
-/* Add ability to search, data-searchable */
+/* Add ability to search, data-searchable, pagination */
 export const table = (opts: IMoxyUIOptions) => {
 	queryAll('.moxy-table').forEach((tbl: HTMLElement) => {
 		tbl.style.setProperty('--theme', `var(--${opts.theme || 'grey'})`)
