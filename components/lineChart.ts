@@ -1,6 +1,6 @@
 import { IKeyValuePair, IMoxyUIOptions } from '../lib/IMoxyUI'
+import { svge } from '../lib/MoxyUI.core'
 import { normalizeData } from '../lib/MoxyUI.util'
-import { svge } from './svg'
 
 export const lineChart = (
 	data: IKeyValuePair[],
@@ -16,9 +16,9 @@ export const lineChart = (
 
 	const svg = svge('svg', {
 		class: 'moxy-lineChart',
-		width: opts.width + 'px',
 		height: opts.height + 'px',
 		style: `background-color: var(--${opts.backgroundColor})`,
+		width: opts.width + 'px',
 	})
 
 	// console.log(opts)
@@ -45,8 +45,8 @@ export const lineChart = (
 	let sPath: string = `M113,${yOrigin} `
 
 	const gPoints = svge('g', {
-		fill: `var(--${opts.fillColor})`,
 		class: 'set points',
+		fill: `var(--${opts.fillColor})`,
 	})
 
 	const gxLabels = svge('g', {

@@ -1,5 +1,5 @@
-import { query, queryAll } from './query'
-import { elem } from './svg'
+import { IMoxyUIOptions } from '../lib/IMoxyUI'
+import { elem, query, queryAll } from '../lib/MoxyUI.core'
 
 export const treeView = (opts: IMoxyUIOptions) => {
 	queryAll('.moxyTreeView').forEach((tv: HTMLElement) => {
@@ -22,7 +22,7 @@ export const treeView = (opts: IMoxyUIOptions) => {
 		queryAll(tv)('li').forEach((node: HTMLElement, index: number) => {
 			if (query(node)('ul')) {
 				node.classList.add('expandable')
-				node.onclick = e => {
+				node.onclick = (e: any) => {
 					if (e.target.classList.contains('expandable')) {
 						e.target.classList.toggle('expanded')
 						e.stopPropagation()

@@ -638,3 +638,83 @@
 	height: 5px;
 	background-color: var(--green);
 }
+
+/*** Moxy Card ***/
+.moxy-card {
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+	transition: 0.3s;
+	border-radius: 5px;
+}
+
+.moxy-card img {
+	border-radius: 5px 5px 0 0;
+}
+
+.moxy-card:hover {
+	box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+}
+
+.moxy-card .content {
+	padding: 4px 12px;
+}
+
+/* Star system */
+.moxy-stars {
+	background: linear-gradient(90deg, var(--grey) 50%, var(--blue) 50%);
+	background-attachment: fixed;
+	-webkit-text-fill-color: transparent;
+	-webkit-background-clip: text;
+	background-clip: text;
+	font-size: 21px;
+	width: auto;
+	display: inline-block;
+}
+.moxy-stars:hover {
+	cursor: pointer;
+}
+
+/** Image Grid **/
+
+.moxy-grid .row {
+	display: flex;
+	flex-wrap: wrap;
+	padding: 0 4px;
+}
+
+.moxy-grid .column {
+	flex: 25%;
+	/*flex: var(--columns);*/
+	padding: 0 4px;
+}
+
+.moxy-grid .column img {
+	margin: 8px;
+	width: 100%;
+	/*width: calc(var(--columns) - var(--nColumns));*/
+	vertical-align: middle;
+}
+
+/*** Sub Way ***/
+.moxy-subway {
+	width: 100%;
+	position: relative;
+	font-size: 10px;
+}
+
+.moxy-subway .rail {
+	width: 100%;
+	height: 5px;
+	background-color: #eee;
+}
+
+.moxy-subway span {
+	position: absolute;
+	top: 0;
+	background-color: var(--theme);
+	border: 3px solid #fff;
+	cursor: pointer;
+}
+
+.moxy-subway span.active {
+	border: 3px solid #444;
+}

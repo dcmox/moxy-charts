@@ -43,6 +43,7 @@ var calculator_1 = require("./components/calculator");
 var calendar_1 = require("./components/calendar");
 var dataTable_1 = require("./components/dataTable");
 var dropdown_1 = require("./components/dropdown");
+var imageGrid_1 = require("./components/imageGrid");
 var lineChart_1 = require("./components/lineChart");
 var loadingBar_1 = require("./components/loadingBar");
 var loadingCircle_1 = require("./components/loadingCircle");
@@ -50,6 +51,8 @@ var pieChart_1 = require("./components/pieChart");
 var pieChartCSS_1 = require("./components/pieChartCSS");
 var progressScroll_1 = require("./components/progressScroll");
 var radarChart_1 = require("./components/radarChart");
+var rating_1 = require("./components/rating");
+var subWay_1 = require("./components/subWay");
 var table_1 = require("./components/table");
 var treeMap_1 = require("./components/treeMap");
 var treeView_1 = require("./components/treeView");
@@ -71,6 +74,9 @@ var MoxyUI = /** @class */ (function () {
         treeView_1.treeView(opts);
         accordian_1.accordian(opts);
         progressScroll_1.progressScroll(opts);
+        rating_1.rating(opts);
+        imageGrid_1.imageGrid(opts);
+        subWay_1.subWay(opts);
     };
     MoxyUI.display = function (selector, elem, opts) {
         var element = document.querySelector(selector);
@@ -183,30 +189,30 @@ chart.render('#chartThree', 'bar-vert');
 chart.render('#chartFour', 'dataTable');
 chart.render('#chartFive', 'treemap');
 chart.render('#radarChart', 'radarChart', {
-    fillColor: 'blue',
     borderColor: 'darkblue',
-    textColor: 'white',
-    title: 'Weekly Downloads',
     captions: {
-        strength: 'Strength',
         agility: 'Agility',
-        stamina: 'Stamina',
         intelligence: 'Intelligence',
+        stamina: 'Stamina',
+        strength: 'Strength',
         wisdom: 'Wisdom'
-    }
+    },
+    fillColor: 'blue',
+    textColor: 'white',
+    title: 'Weekly Downloads'
 }, [
     {
-        strength: 0.7,
         agility: 1,
-        stamina: 0.9,
         intelligence: 0.67,
+        stamina: 0.9,
+        strength: 0.7,
         wisdom: 0.8
     },
     {
-        strength: 0.6,
         agility: 0.9,
-        stamina: 0.8,
         intelligence: 0.7,
+        stamina: 0.8,
+        strength: 0.6,
         wisdom: 0.6
     },
 ]);
@@ -253,33 +259,36 @@ MoxyUI.display('#calculator', 'calculator', {
     theme: 'blue'
 });
 MoxyUI.display('#calendar', 'calendar', {
-    height: 200,
-    width: 150,
-    text: 'Loading...',
-    theme: 'blue',
-    textColor: 'white',
     data: {
         events: [
             // tslint:disable: quotemark
             {
                 date: new Date('February 14, 2020'),
-                label: "Daniel's Birthday",
-                description: "It's party time!"
+                description: "It's party time!",
+                label: "Daniel's Birthday"
             },
-            { date: new Date('February 14, 2020'), label: "Valentine's Day" },
+            {
+                date: new Date('February 14, 2020'),
+                label: "Valentine's Day"
+            },
             {
                 date: new Date('February 17, 2020'),
                 dateEnd: new Date('February 21, 2020'),
                 label: 'Vacation'
             },
         ]
-    }
+    },
+    height: 200,
+    text: 'Loading...',
+    textColor: 'white',
+    theme: 'blue',
+    width: 150
 });
 MoxyUI.display('#demo', 'loadingCircle', {
     height: 150,
-    width: 150,
     text: 'Loading...',
-    textColor: 'blue'
+    textColor: 'blue',
+    width: 150
 });
 MoxyUI.init({ backgroundColor: 'blue', theme: 'blue' });
 // colorPicker()

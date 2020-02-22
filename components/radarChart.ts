@@ -1,5 +1,5 @@
 import { IKeyValuePair, IMoxyUIOptions } from '../lib/IMoxyUI'
-import { svge } from './svg'
+import { svge } from '../lib/MoxyUI.core'
 
 const scale = (value: number, sz: number) => {
 	const circle = svge('circle', {

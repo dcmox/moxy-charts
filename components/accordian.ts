@@ -1,10 +1,10 @@
-import { bindAll, query, queryAll } from './query'
-import { elem } from './svg'
+import { IMoxyUIOptions } from '../lib/IMoxyUI'
+import { bindAll, queryAll } from '../lib/MoxyUI.core'
 
 export const accordian = (opts: IMoxyUIOptions) => {
 	queryAll('.moxy-accordian').forEach((el: HTMLElement) => {
 		queryAll(el)('h1, h2, h3, h4').forEach((node: HTMLElement) => {
-			node.onclick = e => {
+			node.onclick = (e: any) => {
 				if (
 					el.dataset &&
 					el.dataset.dynamic &&

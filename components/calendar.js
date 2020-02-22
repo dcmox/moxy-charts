@@ -1,6 +1,6 @@
 "use strict";
 exports.__esModule = true;
-var query_1 = require("./query");
+var MoxyUI_core_1 = require("../lib/MoxyUI.core");
 /* Todo - enable date picker option, show previous month and following month dates but grayed out. */
 exports.shortDate = function (date) {
     return date
@@ -27,17 +27,17 @@ exports.calendar = function (element, opts) {
     if (opts.data && opts.data.events) {
         exports.setCalendarEvents(new Date(), element, opts);
     }
-    query_1.bindAll(element)('.previous, .next', function (elem) {
+    MoxyUI_core_1.bindAll(element)('.previous, .next', function (elem) {
         elem.onclick = function (e) {
-            var date = new Date(query_1.query(element)('.month-year').dataset.date);
+            var date = new Date(MoxyUI_core_1.query(element)('.month-year').dataset.date);
             if (e.target.className === 'previous') {
                 date.setMonth(date.getMonth() - 1);
             }
             else {
                 date.setMonth(date.getMonth() + 1);
             }
-            query_1.query(element)('.month-year').dataset.date = date;
-            query_1.query(element)('.month-year').innerHTML = exports.shortDate(date);
+            MoxyUI_core_1.query(element)('.month-year').dataset.date = date;
+            MoxyUI_core_1.query(element)('.month-year').innerHTML = exports.shortDate(date);
             exports.setCalendarDays(element, date);
             exports.setCalendarEvents(date, element, opts);
         };
@@ -56,11 +56,11 @@ exports.setCalendarEvents = function (date, element, opts) {
                 // range
                 if (event.date.getFullYear() === date.getFullYear() &&
                     event.date.getMonth() === date.getMonth()) {
-                    query_1.query(element)(".calendar-cells .cell[data-day=\"" + event.date.getDate() + "\"]").innerHTML += "<div class=\"event " + cls + "\"><span title=\"" + (event.description ||
+                    MoxyUI_core_1.query(element)(".calendar-cells .cell[data-day=\"" + event.date.getDate() + "\"]").innerHTML += "<div class=\"event " + cls + "\"><span title=\"" + (event.description ||
                         event.label) + "\">" + event.label + "</span></div>";
                     if (cls) {
-                        query_1.query(element)(".calendar-cells .cell[data-day=\"" + event.date.getDate() + "\"]").classList.add('special');
-                        query_1.query(element)(".calendar-cells .cell[data-day=\"" + event.date.getDate() + "\"]").title += event.label + '. ';
+                        MoxyUI_core_1.query(element)(".calendar-cells .cell[data-day=\"" + event.date.getDate() + "\"]").classList.add('special');
+                        MoxyUI_core_1.query(element)(".calendar-cells .cell[data-day=\"" + event.date.getDate() + "\"]").title += event.label + '. ';
                     }
                     var d = new Date(event.date);
                     while (true) {
@@ -68,15 +68,15 @@ exports.setCalendarEvents = function (date, element, opts) {
                         d.setDate(d.getDate() + 1);
                         if (d.getMonth() === date.getMonth() &&
                             d.getDate() <= event.dateEnd.getDate()) {
-                            query_1.query(element)(".calendar-cells .cell[data-day=\"" + d.getDate() + "\"]").innerHTML += "<div class=\"event " + cls + "\"><span title=\"" + (event.description ||
+                            MoxyUI_core_1.query(element)(".calendar-cells .cell[data-day=\"" + d.getDate() + "\"]").innerHTML += "<div class=\"event " + cls + "\"><span title=\"" + (event.description ||
                                 event.label) + "\">" + event.label + "</span></div>";
                         }
                         else {
                             break;
                         }
                         if (cls) {
-                            query_1.query(element)(".calendar-cells .cell[data-day=\"" + d.getDate() + "\"]").classList.add('special');
-                            query_1.query(element)(".calendar-cells .cell[data-day=\"" + d.getDate() + "\"]").title += event.label + '. ';
+                            MoxyUI_core_1.query(element)(".calendar-cells .cell[data-day=\"" + d.getDate() + "\"]").classList.add('special');
+                            MoxyUI_core_1.query(element)(".calendar-cells .cell[data-day=\"" + d.getDate() + "\"]").title += event.label + '. ';
                         }
                     }
                 }
@@ -84,11 +84,11 @@ exports.setCalendarEvents = function (date, element, opts) {
             else {
                 if (event.date.getFullYear() === date.getFullYear() &&
                     event.date.getMonth() === date.getMonth()) {
-                    query_1.query(element)(".calendar-cells .cell[data-day=\"" + event.date.getDate() + "\"]").innerHTML += "<div class=\"event " + cls + "\"><span title=\"" + (event.description ||
+                    MoxyUI_core_1.query(element)(".calendar-cells .cell[data-day=\"" + event.date.getDate() + "\"]").innerHTML += "<div class=\"event " + cls + "\"><span title=\"" + (event.description ||
                         event.label) + "\">" + event.label + "</span></div>";
                     if (cls) {
-                        query_1.query(element)(".calendar-cells .cell[data-day=\"" + event.date.getDate() + "\"]").classList.add('special');
-                        query_1.query(element)(".calendar-cells .cell[data-day=\"" + event.date.getDate() + "\"]").title += event.label + '. ';
+                        MoxyUI_core_1.query(element)(".calendar-cells .cell[data-day=\"" + event.date.getDate() + "\"]").classList.add('special');
+                        MoxyUI_core_1.query(element)(".calendar-cells .cell[data-day=\"" + event.date.getDate() + "\"]").title += event.label + '. ';
                     }
                 }
             }
@@ -96,16 +96,16 @@ exports.setCalendarEvents = function (date, element, opts) {
     }
 };
 exports.setCalendarDays = function (element, date) {
-    query_1.query(element)('.calendar-cells').innerHTML = '';
+    MoxyUI_core_1.query(element)('.calendar-cells').innerHTML = '';
     var startDay = new Date(date);
     var lastDay = new Date(date.getFullYear(), date.getMonth() + 1, 0).getDate();
     startDay.setDate(1);
     var blankCells = startDay.getDay();
     for (var i = 0; i < blankCells; i++) {
-        query_1.query(element)('.calendar-cells').innerHTML +=
+        MoxyUI_core_1.query(element)('.calendar-cells').innerHTML +=
             '<div class="cell prevMonth"></div>';
     }
     for (var i = 1; i < lastDay + 1; i++) {
-        query_1.query(element)('.calendar-cells').innerHTML += "<div class=\"cell\" data-day=\"" + i + "\"><span>" + i + "</span></div>";
+        MoxyUI_core_1.query(element)('.calendar-cells').innerHTML += "<div class=\"cell\" data-day=\"" + i + "\"><span>" + i + "</span></div>";
     }
 };

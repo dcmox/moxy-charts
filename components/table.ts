@@ -1,6 +1,5 @@
 import { IMoxyUIOptions } from '../lib/IMoxyUI'
-import { query, queryAll } from './query'
-import { elem } from './svg'
+import { elem, query, queryAll } from '../lib/MoxyUI.core'
 
 /* Add ability to search, data-searchable, pagination */
 export const table = (opts: IMoxyUIOptions) => {
@@ -12,17 +11,17 @@ export const table = (opts: IMoxyUIOptions) => {
 				th.dataset.sortable &&
 				(th.dataset.sortable === 'true' || th.dataset.sortable === '1')
 			) {
-				th.onclick = e => {
+				th.onclick = (e: any) => {
 					const rows = queryAll(tbl)('tbody tr')
 					if (th.dataset.sortDir && th.dataset.sortDir === 'asc') {
-						queryAll(tbl)('thead th').forEach(thh => {
+						queryAll(tbl)('thead th').forEach((thh: any) => {
 							if (thh.dataset && thh.dataset.sortDir) {
 								thh.dataset.sortDir = ''
 							}
 						})
 						th.dataset.sortDir = 'desc'
 					} else {
-						queryAll(tbl)('thead th').forEach(thh => {
+						queryAll(tbl)('thead th').forEach((thh: any) => {
 							if (thh.dataset && thh.dataset.sortDir) {
 								thh.dataset.sortDir = ''
 							}
@@ -58,7 +57,7 @@ export const table = (opts: IMoxyUIOptions) => {
 
 const setResizable = (tbl: HTMLElement) => {
 	const row = tbl.getElementsByTagName('tr')[0]
-	const cols = row ? row.children : undefined
+	const cols: any = row ? row.children : undefined
 	if (!cols) {
 		return
 	}
@@ -69,8 +68,8 @@ const setResizable = (tbl: HTMLElement) => {
 
 	for (let i = 0; i < cols.length; i++) {
 		const div = elem('div', {
-			style: `height:${tableHeight}px;`,
 			class: 'resizer',
+			style: `height:${tableHeight}px;`,
 		})
 		cols[i].appendChild(div)
 		cols[i].style.position = 'relative'
@@ -79,13 +78,13 @@ const setResizable = (tbl: HTMLElement) => {
 }
 
 const setListeners = (div: HTMLElement) => {
-	let pageX: number | null
-	let col: HTMLElement | null
-	let nCol: HTMLElement | null
-	let colWidth: number | null
-	let nColWidth: number | null
+	let pageX: any
+	let col: any
+	let nCol: any
+	let colWidth: any
+	let nColWidth: any
 
-	div.addEventListener('mousedown', e => {
+	div.addEventListener('mousedown', (e: any) => {
 		col = e.target.parentElement
 		nCol = col.nextElementSibling
 		pageX = e.pageX
@@ -99,12 +98,15 @@ const setListeners = (div: HTMLElement) => {
 
 	div.addEventListener(
 		'mouseover',
-		e => (e.target.style.borderRight = '2px solid var(--theme)'),
+		(e: any) => (e.target.style.borderRight = '2px solid var(--theme)'),
 	)
 
-	div.addEventListener('mouseout', e => (e.target.style.borderRight = ''))
+	div.addEventListener(
+		'mouseout',
+		(e: any) => (e.target.style.borderRight = ''),
+	)
 
-	document.addEventListener('mousemove', e => {
+	document.addEventListener('mousemove', (e: any) => {
 		if (col) {
 			const diffX = e.pageX - pageX
 			if (nCol) {
@@ -114,7 +116,7 @@ const setListeners = (div: HTMLElement) => {
 		}
 	})
 
-	document.addEventListener('mouseup', e => {
+	document.addEventListener('mouseup', (e: any) => {
 		col = null
 		nCol = null
 		pageX = null

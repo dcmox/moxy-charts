@@ -4,8 +4,8 @@ import {
 	MoxyUIColors,
 	MoxyUIDefaultOptions,
 } from '../lib/IMoxyUI'
+import { elem, svge } from '../lib/MoxyUI.core'
 import { normalizeData } from '../lib/MoxyUI.util'
-import { elem, svge } from './svg'
 
 export const pieChart = (
 	data: IKeyValuePair[],

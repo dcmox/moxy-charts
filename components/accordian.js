@@ -1,14 +1,14 @@
 "use strict";
 exports.__esModule = true;
-var query_1 = require("./query");
+var MoxyUI_core_1 = require("../lib/MoxyUI.core");
 exports.accordian = function (opts) {
-    query_1.queryAll('.moxy-accordian').forEach(function (el) {
-        query_1.queryAll(el)('h1, h2, h3, h4').forEach(function (node) {
+    MoxyUI_core_1.queryAll('.moxy-accordian').forEach(function (el) {
+        MoxyUI_core_1.queryAll(el)('h1, h2, h3, h4').forEach(function (node) {
             node.onclick = function (e) {
                 if (el.dataset &&
                     el.dataset.dynamic &&
                     el.dataset.dynamic === 'true') {
-                    query_1.bindAll(el)('h1, h2, h3, h4', function (h) {
+                    MoxyUI_core_1.bindAll(el)('h1, h2, h3, h4', function (h) {
                         h.nextElementSibling.style.maxHeight = null;
                         h.nextElementSibling.classList.remove('expanded');
                     });

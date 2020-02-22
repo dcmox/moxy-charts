@@ -1,8 +1,8 @@
-import { query, queryAll } from './query'
-import { elem } from './svg'
+import { IMoxyUIOptions } from '../lib/IMoxyUI'
+import { elem, query, queryAll } from '../lib/MoxyUI.core'
 
 // TODO: Add data-source with debounce
-export const dropdown = (opts: IMoxyUIOpts) => {
+export const dropdown = (opts: IMoxyUIOptions) => {
 	// Loop through each dropdown of class .moxy-dropdown
 	queryAll('.moxy-dropdown').forEach((dd: HTMLElement) => {
 		// Set properties to each of them
@@ -19,7 +19,7 @@ export const dropdown = (opts: IMoxyUIOpts) => {
 		const span = elem('span', {
 			class: 'moxy-dropdown-select',
 		})
-		input.onclick = e => {
+		input.onclick = (e: any) => {
 			e.target.setSelectionRange(0, e.target.value.length)
 		}
 		span.innerHTML = '&#x1F893'
@@ -28,8 +28,8 @@ export const dropdown = (opts: IMoxyUIOpts) => {
 		// Iterate through all optionsi n the select
 		queryAll(dd)('option').forEach((opt: any, index: number) => {
 			const option = elem('li', {
-				'data-value': opt.value,
 				'data-label': opt.innerText,
+				'data-value': opt.value,
 			})
 			option.innerText = opt.innerText
 			option.onclick = () => {
@@ -45,7 +45,7 @@ export const dropdown = (opts: IMoxyUIOpts) => {
 		})
 
 		// Handle our search selection
-		input.onkeyup = e => {
+		input.onkeyup = (e: any) => {
 			// Handle return on selection, hide dropdown
 			if (e.keyCode === 13) {
 				const active = query(list)('li.active')

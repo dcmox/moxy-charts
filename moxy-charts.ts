@@ -8,9 +8,9 @@ import { accordian } from './components/accordian'
 import { barChart } from './components/barChart'
 import { calculator } from './components/calculator'
 import { calendar } from './components/calendar'
-import { colorPicker } from './components/colorPicker'
 import { dataTable } from './components/dataTable'
 import { dropdown } from './components/dropdown'
+import { imageGrid } from './components/imageGrid'
 import { lineChart } from './components/lineChart'
 import { loadingBar } from './components/loadingBar'
 import { loadingCircle } from './components/loadingCircle'
@@ -18,6 +18,8 @@ import { pieChart } from './components/pieChart'
 import { pieCSSChart } from './components/pieChartCSS'
 import { progressScroll } from './components/progressScroll'
 import { radarChart } from './components/radarChart'
+import { rating } from './components/rating'
+import { subWay } from './components/subWay'
 import { table } from './components/table'
 import { treeMap } from './components/treeMap'
 import { treeView } from './components/treeView'
@@ -29,10 +31,13 @@ class MoxyUI {
 		treeView(opts)
 		accordian(opts)
 		progressScroll(opts)
+		rating(opts)
+		imageGrid(opts)
+		subWay(opts)
 	}
 	public static display(
 		selector: string,
-		elem: 'loadingCircle' | 'calendar' | 'loadingBar',
+		elem: 'loadingCircle' | 'calendar' | 'loadingBar' | 'calculator',
 		opts: IMoxyUIOptions,
 	): boolean {
 		const element: HTMLElement | null = document.querySelector(selector)
@@ -172,31 +177,31 @@ chart.render(
 	'#radarChart',
 	'radarChart',
 	{
-		fillColor: 'blue',
 		borderColor: 'darkblue',
-		textColor: 'white',
-		title: 'Weekly Downloads',
 		captions: {
-			strength: 'Strength',
 			agility: 'Agility',
-			stamina: 'Stamina',
 			intelligence: 'Intelligence',
+			stamina: 'Stamina',
+			strength: 'Strength',
 			wisdom: 'Wisdom',
 		},
+		fillColor: 'blue',
+		textColor: 'white',
+		title: 'Weekly Downloads',
 	},
 	[
 		{
-			strength: 0.7,
 			agility: 1,
-			stamina: 0.9,
 			intelligence: 0.67,
+			stamina: 0.9,
+			strength: 0.7,
 			wisdom: 0.8,
 		},
 		{
-			strength: 0.6,
 			agility: 0.9,
-			stamina: 0.8,
 			intelligence: 0.7,
+			stamina: 0.8,
+			strength: 0.6,
 			wisdom: 0.6,
 		},
 	],
@@ -235,20 +240,18 @@ MoxyUI.display('#calculator', 'calculator', {
 })
 
 MoxyUI.display('#calendar', 'calendar', {
-	height: 200,
-	width: 150,
-	text: 'Loading...',
-	theme: 'blue',
-	textColor: 'white',
 	data: {
 		events: [
 			// tslint:disable: quotemark
 			{
 				date: new Date('February 14, 2020'),
-				label: "Daniel's Birthday",
 				description: "It's party time!",
+				label: "Daniel's Birthday",
 			},
-			{ date: new Date('February 14, 2020'), label: "Valentine's Day" },
+			{
+				date: new Date('February 14, 2020'),
+				label: "Valentine's Day",
+			},
 			{
 				date: new Date('February 17, 2020'),
 				dateEnd: new Date('February 21, 2020'),
@@ -256,13 +259,18 @@ MoxyUI.display('#calendar', 'calendar', {
 			},
 		],
 	},
+	height: 200,
+	text: 'Loading...',
+	textColor: 'white',
+	theme: 'blue',
+	width: 150,
 })
 
 MoxyUI.display('#demo', 'loadingCircle', {
 	height: 150,
-	width: 150,
 	text: 'Loading...',
 	textColor: 'blue',
+	width: 150,
 })
 
 MoxyUI.init({ backgroundColor: 'blue', theme: 'blue' })

@@ -1,5 +1,5 @@
 import { IMoxyUIOptions } from '../lib/IMoxyUI'
-import { svge } from './svg'
+import { svge } from '../lib/MoxyUI.core'
 
 export const loadingCircle = (
 	element: HTMLElement,
@@ -21,9 +21,9 @@ export const loadingCircle = (
 		'svg',
 		{
 			class: 'moxy-progress-circle',
-			width: opts.width,
 			height: opts.height,
 			viewBox: `0 0 ${opts.width} ${opts.height}`,
+			width: opts.width,
 		},
 		{
 			innerHTML:

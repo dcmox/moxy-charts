@@ -1,6 +1,6 @@
 "use strict";
 exports.__esModule = true;
-var svg_1 = require("./svg");
+var MoxyUI_core_1 = require("../lib/MoxyUI.core");
 exports.loadingCircle = function (element, opts) {
     if (!opts.width) {
         opts.width = 300;
@@ -10,11 +10,11 @@ exports.loadingCircle = function (element, opts) {
     }
     element.style.setProperty('--circle-radius', (opts.width + 290).toString());
     element.style.setProperty('--circle-animation', opts.animation || 'infinite alternate');
-    var svg = svg_1.svge('svg', {
+    var svg = MoxyUI_core_1.svge('svg', {
         "class": 'moxy-progress-circle',
-        width: opts.width,
         height: opts.height,
-        viewBox: "0 0 " + opts.width + " " + opts.height
+        viewBox: "0 0 " + opts.width + " " + opts.height,
+        width: opts.width
     }, {
         innerHTML: "<circle cx=\"" + (opts.width / 2).toString() + "\" cy=\"" + (opts.height / 2).toString() + "\" r=\"" + (opts.height / 2 -
             6).toString() + "\" fill=\"none\" stroke=\"var(--light-grey)\" stroke-width=\"12\"></circle>" +

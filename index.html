@@ -8,6 +8,9 @@
 				margin: 20px auto;
 				width: 1000px;
 			}
+			body a {
+				color: #d44;
+			}
 			h2 {
 				color: var(--blue);
 			}
@@ -29,6 +32,7 @@
 				width: 200px;
 				height: 300px;
 			}
+
 			#calendar {
 				clear: both;
 				margin: 50px 0 200px;
@@ -116,15 +120,103 @@
 				display: none;
 			}
 			/* Method to detect if a color should contain a white or black font color */
-			.moxy-color-picker {
+
+			.moxyTreeView {
+				padding: 20px;
+				background-color: #fafafa;
+				margin: 0;
 			}
-			.moxy-color-picker span {
-				display: inline-block;
-				width: 2px;
-				height: 2px;
+			.moxyTreeViewOpts {
+				float: right;
+			}
+			.moxy-accordian {
+				width: 500px;
+			}
+			.moxy-accordian h3.expanded:after {
+				content: '-';
+				float: right;
+			}
+			.moxy-accordian h3:after {
+				content: '+';
+				float: right;
+			}
+			.moxy-accordian h3 {
+				padding: 8px;
+				background-color: #eee;
 			}
 		</style>
-		<div id="" class="moxy-color-picker"></div>
+
+		<div class="moxy-progress-scroll" data-target="blah"></div>
+		<div id="blah" style="height: 300px; overflow-y: scroll;">
+			<div style="height:10000px">
+				Testing
+			</div>
+		</div>
+
+		<div class="loader green"></div>
+		<div class="fade-loader"></div>
+
+		<div class="moxy-accordian" data-dynamic="true">
+			<h3>Section 1</h3>
+			<p>
+				A section of text goes here. Did you know you can make this into
+				a dynamic accordian?
+			</p>
+			<h3>Section 2</h3>
+			<p>
+				Another section of text goes here. You just have to set the
+				data-dynamic attribute to "true"
+			</p>
+			<h3>Section 3</h3>
+			<p>
+				All the sections of text go here.
+			</p>
+		</div>
+
+		<div style="width: 300px;">
+			<h3>Tree View Component</h3>
+			<ul class="moxyTreeView" data-show-toggle="true">
+				<li>
+					<a href="#">C</a>
+					<ul>
+						<li><span>Program Files</span></li>
+						<li>Users</li>
+						<li>
+							<a href="#">Windows</a>
+							<ul>
+								<li>
+									System32
+									<ul>
+										<li>
+											Drivers
+											<ul>
+												<li>
+													etc
+													<ul>
+														<li>HOSTS</li>
+													</ul>
+												</li>
+											</ul>
+										</li>
+									</ul>
+								</li>
+							</ul>
+						</li>
+					</ul>
+				</li>
+			</ul>
+		</div>
+
+		<div style="margin-top: 60px; clear: both; font-size: 11px;">
+			<div class="moxy-subway" data-size="20" data-theme="blue">
+				<span class="active">1</span>
+				<span>2</span>
+				<span>3</span>
+				<span>4</span>
+				<span>Done</span>
+			</div>
+		</div>
+
 		<div
 			id="slideshow"
 			class="moxy-slideshow"
@@ -158,8 +250,35 @@
 		</div>
 
 		<div id="calendar" style="clear: both; width: 300px;"></div>
+
 		<br />
-		<div id=""></div>
+
+		<div style="width: 100px;">
+			<div
+				class="moxy-stars"
+				data-max-stars="5"
+				data-partial="false"
+			></div>
+		</div>
+		<div class="moxy-card" style="width: 200px;">
+			<img src="img/games.jpg" style="width: 200px; height: 200px;" />
+			<div class="content">
+				<h3>Card</h3>
+				<p>
+					Card content goes here.
+				</p>
+			</div>
+		</div>
+
+		<div class="moxy-grid" data-columns="2">
+			<img src="img/hat.jpg" title="Fancy Hat" />
+			<img src="img/hat-basic.jpg" title="Sports Hat" />
+			<img src="img/winter-coat.jpg" title="Winter coat" />
+			<img src="img/socks.jpg" title="Fancy socks" />
+			<img src="img/games.jpg" />
+			<img src="img/monitor.jpg" />
+			<img src="img/shoes.jpg" />
+		</div>
 
 		<script src="./dist/main.js" type="text/javascript" defer></script>
 	</body>

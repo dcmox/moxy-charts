@@ -1,19 +1,18 @@
 "use strict";
 exports.__esModule = true;
-var query_1 = require("./query");
-var svg_1 = require("./svg");
+var MoxyUI_core_1 = require("../lib/MoxyUI.core");
 // TODO: Add data-source with debounce
 exports.dropdown = function (opts) {
     // Loop through each dropdown of class .moxy-dropdown
-    query_1.queryAll('.moxy-dropdown').forEach(function (dd) {
+    MoxyUI_core_1.queryAll('.moxy-dropdown').forEach(function (dd) {
         // Set properties to each of them
         dd.style.setProperty('--theme', "var(--" + (opts.theme || 'blue') + ")");
         dd.style.setProperty('--backgroundColor', "var(--" + (opts.backgroundColor || 'blue') + ")");
         // Create the elements necessary for our custom dropdown
-        var select = query_1.query(dd)('select');
-        var input = svg_1.elem('input', { "class": 'moxy-dropdown-input' });
-        var list = svg_1.elem('ul', { "class": 'moxy-dropdown-list' });
-        var span = svg_1.elem('span', {
+        var select = MoxyUI_core_1.query(dd)('select');
+        var input = MoxyUI_core_1.elem('input', { "class": 'moxy-dropdown-input' });
+        var list = MoxyUI_core_1.elem('ul', { "class": 'moxy-dropdown-list' });
+        var span = MoxyUI_core_1.elem('span', {
             "class": 'moxy-dropdown-select'
         });
         input.onclick = function (e) {
@@ -22,17 +21,17 @@ exports.dropdown = function (opts) {
         span.innerHTML = '&#x1F893';
         span.onclick = function () { return input.focus(); };
         // Iterate through all optionsi n the select
-        query_1.queryAll(dd)('option').forEach(function (opt, index) {
-            var option = svg_1.elem('li', {
-                'data-value': opt.value,
-                'data-label': opt.innerText
+        MoxyUI_core_1.queryAll(dd)('option').forEach(function (opt, index) {
+            var option = MoxyUI_core_1.elem('li', {
+                'data-label': opt.innerText,
+                'data-value': opt.value
             });
             option.innerText = opt.innerText;
             option.onclick = function () {
                 input.value = option.dataset.label;
                 input.dataset.value = option.dataset.value;
-                query_1.queryAll(select, true)('option').removeAttribute('selected');
-                query_1.query(select)("option[value=\"" + option.dataset.value + "\"]").setAttribute('selected', 'selected');
+                MoxyUI_core_1.queryAll(select, true)('option').removeAttribute('selected');
+                MoxyUI_core_1.query(select)("option[value=\"" + option.dataset.value + "\"]").setAttribute('selected', 'selected');
                 list.classList.add('hidden');
             };
             list.append(option);
@@ -41,7 +40,7 @@ exports.dropdown = function (opts) {
         input.onkeyup = function (e) {
             // Handle return on selection, hide dropdown
             if (e.keyCode === 13) {
-                var active = query_1.query(list)('li.active');
+                var active = MoxyUI_core_1.query(list)('li.active');
                 if (active) {
                     active.click();
                 }
@@ -50,7 +49,7 @@ exports.dropdown = function (opts) {
             }
             // Handle keycodes
             if (e.keyCode === 40 || e.keyCode === 38) {
-                var previouslyActive = query_1.query(list)('li.active');
+                var previouslyActive = MoxyUI_core_1.query(list)('li.active');
                 if (e.keyCode === 38 && !previouslyActive) {
                     return;
                 }
@@ -58,7 +57,7 @@ exports.dropdown = function (opts) {
                     ? e.keyCode === 40
                         ? previouslyActive.nextSibling
                         : previouslyActive.previousSibling
-                    : query_1.query(list)('li:not(.hidden):not(.active)');
+                    : MoxyUI_core_1.query(list)('li:not(.hidden):not(.active)');
                 if (previouslyActive) {
                     previouslyActive.classList.remove('active');
                 }
@@ -67,12 +66,12 @@ exports.dropdown = function (opts) {
             }
             // Handle clearing out selection
             if (e.target.value.trim() === '') {
-                query_1.queryAll(select, true)('option').removeAttribute('selected');
+                MoxyUI_core_1.queryAll(select, true)('option').removeAttribute('selected');
                 input.dataset.value = '';
                 return;
             }
             // Handle filtering our list
-            query_1.queryAll(list)('li').forEach(function (li) {
+            MoxyUI_core_1.queryAll(list)('li').forEach(function (li) {
                 if (li.dataset.value
                     .toLowerCase()
                     .startsWith(e.target.value.toLowerCase()) ||
@@ -92,7 +91,7 @@ exports.dropdown = function (opts) {
         input.onblur = function () {
             return setTimeout(function () {
                 list.classList.add('hidden');
-                query_1.queryAll(list, true)('li.active').removeClass('active');
+                MoxyUI_core_1.queryAll(list, true)('li.active').removeClass('active');
             }, 150);
         };
         // Initialize list to being hidden and append our custom elements

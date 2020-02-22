@@ -1,5 +1,5 @@
 import { IMoxyUIOptions } from '../lib/IMoxyUI'
-import { bindAll, query, queryAll } from './query'
+import { bindAll, query, queryAll } from '../lib/MoxyUI.core'
 
 /* Todo - enable date picker option, show previous month and following month dates but grayed out. */
 export const shortDate = (date: Date) =>
@@ -49,7 +49,7 @@ export const calendar = (
 		setCalendarEvents(new Date(), element, opts)
 	}
 	bindAll(element)('.previous, .next', (elem: HTMLElement) => {
-		elem.onclick = e => {
+		elem.onclick = (e: any) => {
 			const date = new Date(query(element)('.month-year').dataset.date)
 			if (e.target.className === 'previous') {
 				date.setMonth(date.getMonth() - 1)

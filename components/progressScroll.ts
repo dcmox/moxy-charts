@@ -1,7 +1,7 @@
-import { query, queryAll } from './query'
-import { elem } from './svg'
+import { IMoxyUIOptions } from '../lib/IMoxyUI'
+import { elem, query, queryAll } from '../lib/MoxyUI.core'
 
-export const progressScroll = (opts: IMoxyUIOpts) => {
+export const progressScroll = (opts: IMoxyUIOptions) => {
 	queryAll('.moxy-progress-scroll').forEach((el: HTMLElement) => {
 		if (el.dataset && el.dataset.target) {
 			const track = elem('div', { class: 'moxy-scroll-progress-track' })
@@ -17,8 +17,7 @@ export const progressScroll = (opts: IMoxyUIOpts) => {
 			) {
 				target = '#' + target
 			}
-			query(target).onscroll = e => {
-				console.log(e)
+			query(target).onscroll = (e: any) => {
 				const winScroll = e.target.scrollTop || e.target.scrollTop
 				const height = e.target.scrollHeight - e.target.clientHeight
 				const scrolled = (winScroll / height) * 100

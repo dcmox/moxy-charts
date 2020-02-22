@@ -1,4 +1,5 @@
 import { IMoxyUIOptions } from '../lib/IMoxyUI'
+import { queryAll } from '../lib/MoxyUI.core'
 
 export const calculator = (element: HTMLElement, opts: IMoxyUIOptions) => {
 	if (!opts.width) {
@@ -46,178 +47,184 @@ export const calculator = (element: HTMLElement, opts: IMoxyUIOptions) => {
             </div>
         </div>
     `
-	const win = element.querySelector('.calc-window .current')
-	const history = element.querySelector('.calc-window .history')
-	const calc = element.querySelector('.moxy-calculator')
+	const win: any = element.querySelector('.calc-window .current')
+	const history: any = element.querySelector('.calc-window .history')
+	const calc: any = element.querySelector('.moxy-calculator')
 	let lastAction: string = ''
 	let lastOp: string = ''
 	let isLocked: boolean = false
-	/* TODO - Fix SQR, fix subtracting using = over and over when not 0 */
-	calc.onkeypress = e => {
-		const key = String.fromCharCode(e.which)
-		if (calc && calc.querySelector(`div[data-op='${key}']`)) {
-			calc.querySelector(`div[data-op='${key}']`).click()
-			calc.querySelector(`div[data-op='${key}']`).focus()
-			setTimeout(() => calc.focus(), 50)
+	if (calc && history && win) {
+		/* TODO - Fix SQR, fix subtracting using = over and over when not 0 */
+		calc.onkeypress = (e: any) => {
+			const key = String.fromCharCode(e.which)
+			if (calc && calc.querySelector(`div[data-op='${key}']`)) {
+				calc.querySelector(`div[data-op='${key}']`).click()
+				calc.querySelector(`div[data-op='${key}']`).focus()
+				setTimeout(() => calc.focus(), 50)
+			}
 		}
-	}
-	calc.onkeyup = e => {
-		let key: string = ''
-		if (e.which === 46 || e.which === 8) {
-			key = 'del'
-			calc.querySelector(`div[data-op='${key}']`).click()
-			calc.querySelector(`div[data-op='${key}']`).focus()
-			setTimeout(() => calc.focus(), 50)
+		calc.onkeyup = (e: any) => {
+			let key: string = ''
+			if (e.which === 46 || e.which === 8) {
+				key = 'del'
+				calc.querySelector(`div[data-op='${key}']`).click()
+				calc.querySelector(`div[data-op='${key}']`).focus()
+				setTimeout(() => calc.focus(), 50)
+			}
 		}
-	}
-	element.querySelectorAll('.number').forEach(n => {
-		n.onkeypress = e => {
-			if (e.which === 13 && !isLocked) {
+		element.querySelectorAll('.number').forEach((n: any) => {
+			n.onkeypress = (e: any) => {
+				if (e.which === 13 && !isLocked) {
+					isLocked = true
+					e.target.click()
+					isLocked = false
+				}
+			}
+			n.onclick = (e: any) => {
+				if (isLocked) {
+					return
+				}
 				isLocked = true
-				e.target.click()
-				isLocked = false
-			}
-		}
-		n.onclick = e => {
-			if (isLocked) {
-				return
-			}
-			isLocked = true
-			if ((win && win.innerHTML === '0') || lastAction === 'op') {
-				win.innerHTML = e.target.innerHTML
-			} else if (win) {
-				win.innerHTML += e.target.innerHTML
-				win.innerHTML = Number(
-					win.innerHTML.replace(/,/g, ''),
-				).toLocaleString()
-			}
-			lastAction = 'num'
-			isLocked = false
-		}
-	})
-	let memory: string = ''
-	let lastMemory: string = ''
-	/* TODO - cleanup code */
-	element.querySelectorAll('.operator').forEach(n => {
-		n.onkeypress = e => {
-			if (e.which === 13 && !isLocked) {
-				isLocked = true
-				e.target.click()
-				isLocked = false
-			}
-		}
-		n.onclick = e => {
-			if (isLocked) {
-				return
-			}
-			isLocked = true
-			const operator = e.target.dataset.op
-			if (operator === 'clr') {
-				win.innerHTML = '0'
-				memory = ''
-				history.innerHTML = ''
-				lastMemory = ''
-				lastAction = ''
-				lastOp = ''
-				isLocked = false
-				return
-			} else if (operator === 'posneg') {
-				if (win?.innerHTML.indexOf('-') === -1) {
-					win.innerHTML = '-' + win.innerHTML
+				if ((win && win.innerHTML === '0') || lastAction === 'op') {
+					win.innerHTML = e.target.innerHTML
 				} else if (win) {
-					win.innerHTML = win.innerHTML.slice(1)
-				}
-				isLocked = false
-				return
-			} else if (operator === '.' && win) {
-				if (win && lastAction === 'op') {
-					win.innerHTML = '0.'
-					lastAction = 'num'
-				} else if (win.innerHTML.indexOf('.') === -1) {
-					win.innerHTML += '.'
-				}
-				isLocked = false
-				return
-			} else if (operator === 'del') {
-				if (lastOp === '=') {
-					memory = ''
-					history.innerHTML = memory
-					isLocked = false
-					return
-				} else if (lastAction === 'num') {
+					win.innerHTML += e.target.innerHTML
 					win.innerHTML = Number(
-						win.innerHTML
-							.slice(0, win.innerHTML.length - 1)
-							.replace(/,/g, ''),
-					)
+						win.innerHTML.replace(/,/g, ''),
+					).toLocaleString()
+				}
+				lastAction = 'num'
+				isLocked = false
+			}
+		})
+		let memory: string = ''
+		let lastMemory: string = ''
+		/* TODO - cleanup code */
+		element.querySelectorAll('.operator').forEach((n: any) => {
+			n.onkeypress = (e: any) => {
+				if (e.which === 13 && !isLocked) {
+					isLocked = true
+					e.target.click()
+					isLocked = false
+				}
+			}
+			n.onclick = (e: any) => {
+				if (isLocked) {
+					return
+				}
+				isLocked = true
+				const operator = e.target.dataset.op
+				if (operator === 'clr') {
+					win.innerHTML = '0'
+					memory = ''
+					history.innerHTML = ''
+					lastMemory = ''
+					lastAction = ''
+					lastOp = ''
 					isLocked = false
 					return
-				} else {
+				} else if (operator === 'posneg') {
+					if (win?.innerHTML.indexOf('-') === -1) {
+						win.innerHTML = '-' + win.innerHTML
+					} else if (win) {
+						win.innerHTML = win.innerHTML.slice(1)
+					}
+					isLocked = false
+					return
+				} else if (operator === '.' && win) {
+					if (win && lastAction === 'op') {
+						win.innerHTML = '0.'
+						lastAction = 'num'
+					} else if (win.innerHTML.indexOf('.') === -1) {
+						win.innerHTML += '.'
+					}
+					isLocked = false
+					return
+				} else if (operator === 'del') {
+					if (lastOp === '=') {
+						memory = ''
+						history.innerHTML = memory
+						isLocked = false
+						return
+					} else if (lastAction === 'num') {
+						win.innerHTML = Number(
+							win.innerHTML
+								.slice(0, win.innerHTML.length - 1)
+								.replace(/,/g, ''),
+						)
+						isLocked = false
+						return
+					} else {
+						isLocked = false
+						return
+					}
+				} else if (lastAction === 'op' && operator === '=') {
+					if (lastOp === '=' && win) {
+						memory =
+							win.innerHTML.replace(/,/g, '') +
+							' ' +
+							lastMemory
+								.split(' ')
+								.slice(-4)
+								.join(' ')
+						history.innerHTML = memory
+						const v = eval(memory.slice(0, memory.length - 2))
+						if (v) {
+							if (v.toString().length > 20) {
+								win.innerHTML = Number(v).toPrecision()
+							} else {
+								win.innerHTML = Number(v).toLocaleString()
+							}
+						}
+						isLocked = false
+						return
+					}
+					memory = memory.slice(0, memory.length - 2) + operator + ' '
+					history.innerHTML = memory
+					isLocked = false
+					return
+				} else if (lastOp === '=') {
+					memory = memory
+						.split('=')
+						.slice(1)
+						.join('')
+				} else if (lastOp === operator && lastAction === 'op') {
+					isLocked = false
+					return
+				} else if (lastOp !== operator && lastAction === 'op') {
+					memory =
+						memory.slice(0, memory.length - 2) +
+						' ' +
+						operator +
+						' '
+					history.innerHTML = memory
 					isLocked = false
 					return
 				}
-			} else if (lastAction === 'op' && operator === '=') {
-				if (lastOp === '=' && win) {
-					memory =
-						win.innerHTML.replace(/,/g, '') +
-						' ' +
-						lastMemory
-							.split(' ')
-							.slice(-4)
-							.join(' ')
+				lastAction = 'op'
+
+				memory +=
+					win?.innerHTML.replace(/,/g, '') + ' ' + operator + ' '
+				if (history) {
 					history.innerHTML = memory
+				}
+				if (win) {
 					const v = eval(memory.slice(0, memory.length - 2))
-					if (v) {
+					if (v !== undefined) {
 						if (v.toString().length > 20) {
 							win.innerHTML = Number(v).toPrecision()
 						} else {
 							win.innerHTML = Number(v).toLocaleString()
 						}
 					}
-					isLocked = false
-					return
 				}
-				memory = memory.slice(0, memory.length - 2) + operator + ' '
-				history.innerHTML = memory
-				isLocked = false
-				return
-			} else if (lastOp === '=') {
-				memory = memory
-					.split('=')
-					.slice(1)
-					.join('')
-			} else if (lastOp === operator && lastAction === 'op') {
-				isLocked = false
-				return
-			} else if (lastOp !== operator && lastAction === 'op') {
-				memory =
-					memory.slice(0, memory.length - 2) + ' ' + operator + ' '
-				history.innerHTML = memory
-				isLocked = false
-				return
-			}
-			lastAction = 'op'
-
-			memory += win?.innerHTML.replace(/,/g, '') + ' ' + operator + ' '
-			if (history) {
-				history.innerHTML = memory
-			}
-			if (win) {
-				const v = eval(memory.slice(0, memory.length - 2))
-				if (v !== undefined) {
-					if (v.toString().length > 20) {
-						win.innerHTML = Number(v).toPrecision()
-					} else {
-						win.innerHTML = Number(v).toLocaleString()
-					}
+				if (operator === '=') {
+					lastMemory = memory
+					memory = ''
 				}
+				lastOp = operator
+				isLocked = false
 			}
-			if (operator === '=') {
-				lastMemory = memory
-				memory = ''
-			}
-			lastOp = operator
-			isLocked = false
-		}
-	})
+		})
+	}
 }

@@ -1,20 +1,19 @@
 "use strict";
 exports.__esModule = true;
-var query_1 = require("./query");
-var svg_1 = require("./svg");
+var MoxyUI_core_1 = require("../lib/MoxyUI.core");
 /* Add ability to search, data-searchable, pagination */
 exports.table = function (opts) {
-    query_1.queryAll('.moxy-table').forEach(function (tbl) {
+    MoxyUI_core_1.queryAll('.moxy-table').forEach(function (tbl) {
         tbl.style.setProperty('--theme', "var(--" + (opts.theme || 'grey') + ")");
-        query_1.queryAll(tbl)('thead th').forEach(function (th, index) {
+        MoxyUI_core_1.queryAll(tbl)('thead th').forEach(function (th, index) {
             if (th.dataset &&
                 th.dataset.sortable &&
                 (th.dataset.sortable === 'true' || th.dataset.sortable === '1')) {
                 th.onclick = function (e) {
                     var _a;
-                    var rows = query_1.queryAll(tbl)('tbody tr');
+                    var rows = MoxyUI_core_1.queryAll(tbl)('tbody tr');
                     if (th.dataset.sortDir && th.dataset.sortDir === 'asc') {
-                        query_1.queryAll(tbl)('thead th').forEach(function (thh) {
+                        MoxyUI_core_1.queryAll(tbl)('thead th').forEach(function (thh) {
                             if (thh.dataset && thh.dataset.sortDir) {
                                 thh.dataset.sortDir = '';
                             }
@@ -22,7 +21,7 @@ exports.table = function (opts) {
                         th.dataset.sortDir = 'desc';
                     }
                     else {
-                        query_1.queryAll(tbl)('thead th').forEach(function (thh) {
+                        MoxyUI_core_1.queryAll(tbl)('thead th').forEach(function (thh) {
                             if (thh.dataset && thh.dataset.sortDir) {
                                 thh.dataset.sortDir = '';
                             }
@@ -32,22 +31,22 @@ exports.table = function (opts) {
                     rows.sort(function (a, b) {
                         if (th.dataset.sortDir &&
                             th.dataset.sortDir === 'asc') {
-                            return query_1.query(a)("td:nth-child(" + (index + 1) + ")")
+                            return MoxyUI_core_1.query(a)("td:nth-child(" + (index + 1) + ")")
                                 .innerText <
-                                query_1.query(b)("td:nth-child(" + (index + 1) + ")").innerText
+                                MoxyUI_core_1.query(b)("td:nth-child(" + (index + 1) + ")").innerText
                                 ? -1
                                 : 1;
                         }
                         else {
-                            return query_1.query(a)("td:nth-child(" + (index + 1) + ")")
+                            return MoxyUI_core_1.query(a)("td:nth-child(" + (index + 1) + ")")
                                 .innerText <
-                                query_1.query(b)("td:nth-child(" + (index + 1) + ")").innerText
+                                MoxyUI_core_1.query(b)("td:nth-child(" + (index + 1) + ")").innerText
                                 ? 1
                                 : -1;
                         }
                     });
-                    query_1.query(tbl)('tbody').innerHTML = '';
-                    (_a = query_1.query(tbl)('tbody')).append.apply(_a, rows);
+                    MoxyUI_core_1.query(tbl)('tbody').innerHTML = '';
+                    (_a = MoxyUI_core_1.query(tbl)('tbody')).append.apply(_a, rows);
                 };
             }
         });
@@ -63,9 +62,9 @@ var setResizable = function (tbl) {
     tbl.style.overflow = 'hidden';
     var tableHeight = tbl.offsetHeight;
     for (var i = 0; i < cols.length; i++) {
-        var div = svg_1.elem('div', {
-            style: "height:" + tableHeight + "px;",
-            "class": 'resizer'
+        var div = MoxyUI_core_1.elem('div', {
+            "class": 'resizer',
+            style: "height:" + tableHeight + "px;"
         });
         cols[i].appendChild(div);
         cols[i].style.position = 'relative';
