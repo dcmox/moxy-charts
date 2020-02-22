@@ -6,6 +6,7 @@ import { calculator } from '../components/calculator'
 import { calendar } from '../components/calendar'
 import { dataTable } from '../components/dataTable'
 import { dropdown } from '../components/dropdown'
+import { fadeLoader } from '../components/fadeLoader'
 import { imageGrid } from '../components/imageGrid'
 import { lineChart } from '../components/lineChart'
 import { loadingBar } from '../components/loadingBar'
@@ -19,6 +20,7 @@ import { subWay } from '../components/subWay'
 import { table } from '../components/table'
 import { treeMap } from '../components/treeMap'
 import { treeView } from '../components/treeView'
+import { typeWriter } from '../components/typeWriter'
 
 /* Should have labelColumn, labelRow, valueColumn, valueRow */
 
@@ -49,6 +51,8 @@ export class MoxyUI {
 		rating(opts)
 		imageGrid(opts)
 		subWay(opts)
+		fadeLoader(opts)
+		typeWriter(opts)
 	}
 	public static display(
 		selector: string,

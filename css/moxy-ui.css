@@ -10,11 +10,64 @@
 	--banana: #c7dc3a;
 	--skyblue: #2fc9e0;
 	--tangerine: #e0552f;
+	--magenta: #ff0097;
+	--darkred: #b91d47;
+	--darkgreen: #1e7145;
+	--lightblue: #eff4ff;
 	--grey: #888;
 	--light-grey: #e6e6e6;
-	--dark: #111;
+	--dark: #1d1d1d;
 	--darkblue: #122c4c;
 	--white: #fff;
+}
+
+.moxy-green {
+	color: var(--green);
+}
+.moxy-blue {
+	color: var(--blue);
+}
+.moxy-red {
+	color: var(--red);
+}
+.moxy-yellow {
+	color: var(--yellow);
+}
+.moxy-teal {
+	color: var(--teal);
+}
+.moxy-purple {
+	color: var(--purple);
+}
+.moxy-pink {
+	color: var(--pink);
+}
+.moxy-banana {
+	color: var(--banana);
+}
+.moxy-skyblue {
+	color: var(--skyblue);
+}
+.moxy-tangerine {
+	color: var(--tangerine);
+}
+.moxy-magenta {
+	color: var(--magenta);
+}
+.moxy-darkgreen {
+	color: var(--darkgreen);
+}
+.moxy-lightblue {
+	color: var(--lightblue);
+}
+.moxy-grey {
+	color: var(--grey);
+}
+.moxy-dark {
+	color: var(--dark);
+}
+.moxy-darkblue {
+	color: var(--darkblue);
 }
 
 /** Progress Circle **/
@@ -606,16 +659,16 @@
 
 @keyframes fade-loader {
 	0% {
-		border-right: 16px solid var(--blue);
+		border-right-color: var(--theme);
 	}
 	25% {
-		border-bottom: 16px solid var(--blue);
+		border-bottom-color: var(--theme);
 	}
 	50% {
-		border-left: 16px solid var(--blue);
+		border-left-color: var(--theme);
 	}
 	100% {
-		border-top: 16px solid var(--blue);
+		border-top-color: var(--theme);
 	}
 }
 
@@ -717,4 +770,92 @@
 
 .moxy-subway span.active {
 	border: 3px solid #444;
+	animation: fade-loader 3s ease-in-out infinite;
+}
+
+/*** Notifications / Alerts ***/
+.warning,
+.success,
+.info,
+.danger {
+	position: relative;
+	padding: 20px 20px 20px 75px;
+	font-weight: bold;
+	color: #fff;
+	margin: 5px 0;
+}
+.success {
+	background-color: var(--darkgreen);
+}
+.success:before {
+	display: block;
+	width: 45px;
+	height: 45px;
+	background-color: #fff;
+	border-radius: 50%;
+	position: absolute;
+	top: 8px;
+	left: 15px;
+	content: '';
+}
+.success:after {
+	content: '\2714';
+	color: var(--darkgreen);
+	font-size: 38px;
+	position: absolute;
+	top: 4px;
+	left: 23px;
+}
+.info {
+	background-color: var(--blue);
+}
+.info:before {
+	display: block;
+	width: 45px;
+	height: 45px;
+	background-color: #fff;
+	border-radius: 50%;
+	position: absolute;
+	top: 8px;
+	left: 15px;
+	content: '';
+}
+.info:after {
+	content: 'i';
+	color: var(--blue);
+	font-size: 38px;
+	position: absolute;
+	top: 4px;
+	left: 33px;
+}
+.warning {
+	background-color: var(--tangerine);
+}
+.danger {
+	background-color: var(--darkred);
+}
+.warning:before,
+.danger:before {
+	content: '\25B2';
+	font-size: 52px;
+	position: absolute;
+	top: -10px;
+	left: 15px;
+}
+.warning:after,
+.danger:after {
+	content: '!';
+	color: var(--tangerine);
+	font-size: 38px;
+	position: absolute;
+	top: 4px;
+	left: 31px;
+}
+.danger:after {
+	color: var(--darkred);
+}
+
+/*** Typewriter ***/
+.moxy-typewriter.blink:before {
+	content: '_';
 }
