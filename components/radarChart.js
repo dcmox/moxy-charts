@@ -5,11 +5,11 @@ var scale = function (value, sz) {
     var circle = MoxyUI_core_1.svge('circle', {
         cx: 0,
         cy: 0,
-        r: ((value / 4) * sz) / 2,
         fill: '#FAFAFA',
+        opacity: '0.3',
+        r: ((value / 4) * sz) / 2,
         stroke: '#999',
-        strokeWidth: '0.2',
-        opacity: '0.3'
+        strokeWidth: '0.2'
     });
     return circle;
 };
@@ -28,12 +28,12 @@ var pathDefinition = function (points) {
 };
 var caption = function (sz) { return function (col) {
     var text = MoxyUI_core_1.svge('text', {
-        x: polarToX(col.angle, (sz / 2) * 0.95).toFixed(4),
-        y: polarToY(col.angle, (sz / 2) * 0.95).toFixed(4),
         dy: 10 / 2,
         fill: '#444',
         style: 'font-weight: bold; text-shadow: 1px 1px 1px #fff',
-        'text-anchor': 'middle'
+        'text-anchor': 'middle',
+        x: polarToX(col.angle, (sz / 2) * 0.95).toFixed(4),
+        y: polarToY(col.angle, (sz / 2) * 0.95).toFixed(4)
     }, { innerHTML: col.caption });
     return text;
 }; };
@@ -48,9 +48,9 @@ var shape = function (columns, opts) { return function (chartData, i) {
                 polarToY(col.angle, (value / 2) * opts.width),
             ];
         })),
-        stroke: "var(--" + opts.borderColor + ")",
         fill: "var(--" + opts.fillColor + ")",
-        opacity: '.5'
+        opacity: '.5',
+        stroke: "var(--" + opts.borderColor + ")"
     });
     return path;
 }; };
@@ -61,13 +61,13 @@ var points = function (points) {
 };
 var axis = function (sz) { return function (col, i) {
     var polyline = MoxyUI_core_1.svge('polyline', {
+        opacity: '0.3',
         points: points([
             [0, 0],
             [polarToX(col.angle, sz / 2), polarToY(col.angle, sz / 2)],
         ]),
         stroke: '#555',
-        strokeWidth: '0.2',
-        opacity: '0.3'
+        strokeWidth: '0.2'
     });
     return polyline;
 }; };
@@ -80,9 +80,9 @@ exports.radarChart = function (data, element, opts) {
     }
     var svg = MoxyUI_core_1.svge('svg', {
         "class": 'moxy-radarchart',
-        width: opts.width,
         height: opts.height,
-        viewBox: "-20 0 " + (opts.width + 40) + " " + opts.width
+        viewBox: "-20 0 " + (opts.width + 40) + " " + opts.width,
+        width: opts.width
     });
     var group = MoxyUI_core_1.svge('g');
     for (var i = 4; i > 0; i--) {

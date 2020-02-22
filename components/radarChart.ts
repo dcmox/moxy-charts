@@ -5,11 +5,11 @@ const scale = (value: number, sz: number) => {
 	const circle = svge('circle', {
 		cx: 0,
 		cy: 0,
-		r: ((value / 4) * sz) / 2,
 		fill: '#FAFAFA',
+		opacity: '0.3',
+		r: ((value / 4) * sz) / 2,
 		stroke: '#999',
 		strokeWidth: '0.2',
-		opacity: '0.3',
 	})
 	return circle
 }
@@ -31,12 +31,12 @@ const caption = (sz: number) => (col: any) => {
 	const text = svge(
 		'text',
 		{
-			x: polarToX(col.angle, (sz / 2) * 0.95).toFixed(4),
-			y: polarToY(col.angle, (sz / 2) * 0.95).toFixed(4),
 			dy: 10 / 2,
 			fill: '#444',
 			style: 'font-weight: bold; text-shadow: 1px 1px 1px #fff',
 			'text-anchor': 'middle',
+			x: polarToX(col.angle, (sz / 2) * 0.95).toFixed(4),
+			y: polarToY(col.angle, (sz / 2) * 0.95).toFixed(4),
 		},
 		{ innerHTML: col.caption },
 	)
@@ -59,9 +59,9 @@ const shape = (columns: any, opts: IMoxyUIOptions) => (
 				]
 			}),
 		),
-		stroke: `var(--${opts.borderColor})`,
 		fill: `var(--${opts.fillColor})`,
 		opacity: '.5',
+		stroke: `var(--${opts.borderColor})`,
 	})
 	return path
 }
@@ -74,13 +74,13 @@ const points = (points: any) => {
 
 const axis = (sz: number) => (col: any, i: number) => {
 	const polyline = svge('polyline', {
+		opacity: '0.3',
 		points: points([
 			[0, 0],
 			[polarToX(col.angle, sz / 2), polarToY(col.angle, sz / 2)],
 		]),
 		stroke: '#555',
 		strokeWidth: '0.2',
-		opacity: '0.3',
 	})
 	return polyline
 }
@@ -99,9 +99,9 @@ export const radarChart = (
 
 	const svg = svge('svg', {
 		class: 'moxy-radarchart',
-		width: opts.width,
 		height: opts.height,
 		viewBox: `-20 0 ${opts.width + 40} ${opts.width}`,
+		width: opts.width,
 	})
 
 	const group = svge('g')
